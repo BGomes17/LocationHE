@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">BeaconLocation</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_beacons_scan">BeaconsScan</string>
+    <string name="title_activity_base">BaseActivity</string>
+    <string name="title_activity_beacons_scan_monitor_adapter">BeaconsScanMonitorAdapter</string>
+    <string name="venue">Venue</string>
+
+
+    <!-- IBEACON -->
+    <string name="device_name">Device Name</string>
+    <string name="proximity_uuid">Proximity UUID</string>
+    <string name="major">Major</string>
+    <string name="minor">Minor</string>
+    <string name="beacon_unique_id">Beacon Unique Id</string>
+    <string name="firmware_version">Firmware version</string>
+    <string name="rssi">Rssi</string>
+    <string name="power">Power</string>
+    <string name="proximity">Proximity</string>
+
+
+<!-- EDDYSTONE -->
+    <string name="namespace">Namespace: %1$s</string>
+    <string name="instance">Instance: %1$s</string>
+    <string name="url">Url: %1$s</string>
+    <string name="tx_power_level">Power: %1$d dBm</string>
+    <string name="temperature">Temperature: %1$f \u00b0C</string>
+    <string name="battery_voltage">Battery voltage: %1$d mV</string>
+    <string name="pdu_count">Pdu count: %1$d</string>
+    <string name="time_since_power_up">Time since power up: %1$d seconds</string>
+    <string name="telemetry_version">Telemetry version: %1$d</string>
+
+
+</resources>
