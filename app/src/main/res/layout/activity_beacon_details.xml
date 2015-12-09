@@ -143,7 +143,7 @@
         android:paddingLeft="25dp">
 
         <TextView
-            android:id="@+id/eddystone_proximity"
+            android:id="@+id/proximity"
             android:text="@string/proximity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

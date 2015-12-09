@@ -1,6 +1,7 @@
 package com.example.beatrizgomes.beaconlocation.ui.activity;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.Menu;
@@ -43,6 +44,8 @@ public class IBeaconDetails extends BaseActivity {
     @Bind(R.id.battery)
     public TextView batteryTextView;
 
+    IBeaconDevice ibeacon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +57,7 @@ public class IBeaconDetails extends BaseActivity {
         View convertView;
 
 
-        IBeaconDevice ibeacon;
+
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -69,7 +72,20 @@ public class IBeaconDetails extends BaseActivity {
             rssiTextView.setText(Html.fromHtml("<b>RSSI:</b> &nbsp;&nbsp;" + ibeacon.getRssi() + " dBm"));
             txPowerTextView.setText(Html.fromHtml("<b>Tx Power:</b> &nbsp;&nbsp;" + ibeacon.getTxPower()));
             batteryTextView.setText(Html.fromHtml("<b>Bateria:</b> &nbsp;&nbsp;" + ibeacon.getBatteryPower() + "%"));
-            proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;" + ibeacon.getProximity()));
+            //proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;" + ibeacon.getProximity()));
+
+            new CountDownTimer(30000, 1000) {
+                public void onFinish() {
+                    // When timer is finished
+                    // Execute your code here
+                    proximityTextView.setText(Html.fromHtml("<b>RSSI:</b> &nbsp;&nbsp;" + ibeacon.getRssi() + " dBm"));
+
+                }
+
+                public void onTick(long millisUntilFinished) {
+                    // millisUntilFinished    The amount of time until finished.
+                }
+            }.start();
 
         }
 

@@ -23,7 +23,7 @@ public class EddystoneDetails extends BaseActivity {
     @Bind(R.id.eddystone_name)
     public TextView nameTextView;
 
-    @Bind(R.id.power)
+    @Bind(R.id.txpower_level)
     public TextView txPowerTextView;
 
     @Bind(R.id.namespace)
@@ -32,13 +32,13 @@ public class EddystoneDetails extends BaseActivity {
     @Bind(R.id.instance_id)
     public TextView instaceTextView;
 
-    @Bind(R.id.rssi)
+    @Bind(R.id.eddystone_rssi)
     public TextView rssiTextView;
 
-    @Bind(R.id.proximity)
+    @Bind(R.id.eddystone_proximity)
     public TextView proximityTextView;
 
-    @Bind(R.id.distance)
+    @Bind(R.id.eddystone_distance)
     public TextView distanceTextView;
 
     @Bind(R.id.battery_voltage)
@@ -53,7 +53,7 @@ public class EddystoneDetails extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_beacon_details);
+        setContentView(R.layout.activity_eddystone_details);
 
         ButterKnife.bind(this);
         setUpActionBar(toolbar);
@@ -68,15 +68,15 @@ public class EddystoneDetails extends BaseActivity {
             eddystone = (IEddystoneDevice) extras.get("EDDYSTONE");
             nameTextView.setText(Html.fromHtml("<b>Nome:</b> &nbsp;&nbsp;" + eddystone.getNamespaceId()));
             distanceTextView.setText(Html.fromHtml("<b>Distância:</b> &nbsp;&nbsp;"));
-            distanceTextView.append(String.format("%.2f m", eddystone.getDistance()));
+            distanceTextView.append(String.format("%.2f cm", eddystone.getDistance()));
             namespaceTextView.setText(Html.fromHtml("<b>Namespace:</b> &nbsp;&nbsp;" + eddystone.getNamespaceId()));
             instaceTextView.setText(Html.fromHtml("<b>Instance:</b> &nbsp;&nbsp;" + eddystone.getInstanceId()));
             //profileTextView.setText(String.format("Perfil: IBeacon"));
             rssiTextView.setText(Html.fromHtml("<b>RSSI:</b> &nbsp;&nbsp;" + eddystone.getRssi() + " dBm"));
             txPowerTextView.setText(Html.fromHtml("<b>Tx Power:</b> &nbsp;&nbsp;" + eddystone.getTxPower()));
-            batteryTextView.setText(Html.fromHtml("<b>Bateria:</b> &nbsp;&nbsp;" + eddystone.getBatteryVoltage() + "%"));
+            batteryTextView.setText(Html.fromHtml("<b>Bateria:</b> &nbsp;&nbsp;" + eddystone.getBatteryVoltage() + "V"));
             proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;" + eddystone.getProximity()));
-            temperatureTextView.setText(Html.fromHtml("<b>Temperatura:</b> &nbsp;&nbsp;" + eddystone.getTemperature()));
+            temperatureTextView.setText(Html.fromHtml("<b>Temperatura:</b> &nbsp;&nbsp;" + eddystone.getTemperature() + "ºC"));
             urlTextView.setText(Html.fromHtml("<b>Url:</b> &nbsp;&nbsp;" + eddystone.getUrl()));
         }
 

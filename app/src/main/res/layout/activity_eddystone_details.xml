@@ -90,7 +90,7 @@
         android:paddingLeft="25dp">
 
         <TextView
-            android:id="@+id/txpowerlevel"
+            android:id="@+id/txpower_level"
             android:text="@string/tx_power_level"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -143,7 +143,7 @@
         android:paddingLeft="25dp">
 
         <TextView
-            android:id="@+id/proximity"
+            android:id="@+id/eddystone_proximity"
             android:text="@string/proximity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

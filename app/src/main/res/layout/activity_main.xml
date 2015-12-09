@@ -13,7 +13,7 @@
 
     <ImageView
         android:paddingTop="150dp"
-        android:paddingBottom="30dp"
+        android:paddingBottom="80dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
@@ -21,11 +21,14 @@
         android:src="@drawable/logo_he" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="149dp"
         android:layout_height="wrap_content"
         android:text="Scan Beacons"
         android:id="@+id/button_scan"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:background="#00B8FF"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
 </LinearLayout>

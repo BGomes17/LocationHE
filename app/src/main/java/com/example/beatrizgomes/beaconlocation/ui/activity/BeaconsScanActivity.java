@@ -3,6 +3,7 @@ package com.example.beatrizgomes.beaconlocation.ui.activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -98,16 +99,29 @@ public class BeaconsScanActivity extends BaseActivity implements ProximityManage
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
 
                 BeaconWrapper child = beaconsAdapter.getChild(groupPosition, childPosition);
-
                 if (DeviceProfile.IBEACON == child.getDeviceProfile()) {
-                    IBeaconDevice ibeacon = child.getBeaconDevice();
+                    final IBeaconDevice ibeacon = child.getBeaconDevice();
 
+                    /*
                     // Cria intent para a passagem para a atividade seguinte
                     Intent intentDetailsActivity = new Intent(BeaconsScanActivity.this, IBeaconDetails.class);
                     intentDetailsActivity.putExtra("IBEACON", ibeacon);
 
                     // Inicia a atividade seguinte
                     startActivity(intentDetailsActivity);
+                    */
+                    Log.i("BeaconActivity", "" + ibeacon.getRssi());
+                    new CountDownTimer(10000, 1000) {
+                        public void onFinish() {
+                            // When timer is finished
+                            // Execute your code here
+                            Log.i("BeaconActivity", "" + ibeacon.getRssi());
+                        }
+
+                        public void onTick(long millisUntilFinished) {
+                            // millisUntilFinished    The amount of time until finished.
+                        }
+                    }.start();
                 } else if (DeviceProfile.EDDYSTONE == child.getDeviceProfile()) {
                     IEddystoneDevice eddystone = child.getEddystoneDevice();
 
