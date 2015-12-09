@@ -43,6 +43,11 @@
         <service
             android:name="com.kontakt.sdk.android.ble.service.ProximityService"
             android:exported="false" />
+
+        <activity
+            android:name="com.example.beatrizgomes.beaconlocation.ui.activity.IBeaconDetails"
+            android:label="@string/title_activity_beacon_details" >
+        </activity>
     </application>
 
 </manifest>

@@ -4,12 +4,15 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ExpandableListView;
 
 import com.example.beatrizgomes.beaconlocation.R;
 import com.example.beatrizgomes.beaconlocation.adapter.monitor.BeaconsScanMonitorAdapter;
+import com.example.beatrizgomes.beaconlocation.model.BeaconWrapper;
 import com.example.beatrizgomes.beaconlocation.util.Utils;
 import com.kontakt.sdk.android.ble.configuration.ActivityCheckConfiguration;
 import com.kontakt.sdk.android.ble.configuration.ForceScanConfiguration;
@@ -25,6 +28,8 @@ import com.kontakt.sdk.android.ble.discovery.ibeacon.IBeaconDeviceEvent;
 import com.kontakt.sdk.android.ble.manager.ProximityManager;
 import com.kontakt.sdk.android.ble.rssi.RssiCalculators;
 import com.kontakt.sdk.android.ble.util.BluetoothUtils;
+import com.kontakt.sdk.android.common.profile.IBeaconDevice;
+import com.kontakt.sdk.android.common.profile.IEddystoneDevice;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +49,7 @@ public class BeaconsScanActivity extends BaseActivity implements ProximityManage
     private static final int REQUEST_CODE_ENABLE_BLUETOOTH = 1;
 
     private BeaconsScanMonitorAdapter beaconsAdapter;
+
 
     private ProximityManager deviceManager;
 
@@ -74,10 +80,46 @@ public class BeaconsScanActivity extends BaseActivity implements ProximityManage
         setUpActionBarTitle("Scan All Beacons");
 
         beaconsAdapter = new BeaconsScanMonitorAdapter(this);
+        Log.i("BeaconActivity", "creating Adapter var");
+
 
         deviceManager = new ProximityManager(this);
 
         listBeacons.setAdapter(beaconsAdapter);
+
+        /*
+            groupPosition: get index of the main list of the selected child:
+                0 - IBeacon
+                1 - Eddystone
+            childPosition: get index in the list of the selected child
+         */
+        listBeacons.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+
+                BeaconWrapper child = beaconsAdapter.getChild(groupPosition, childPosition);
+                if (DeviceProfile.IBEACON == child.getDeviceProfile()) {
+                    IBeaconDevice ibeacon = child.getBeaconDevice();
+
+                    // Cria intent para a passagem para a atividade seguinte
+                    Intent intentDetailsActivity = new Intent(BeaconsScanActivity.this, IBeaconDetails.class);
+                    intentDetailsActivity.putExtra("IBEACON", ibeacon);
+
+                    // Inicia a atividade seguinte
+                    startActivity(intentDetailsActivity);
+                } else if (DeviceProfile.EDDYSTONE == child.getDeviceProfile()) {
+                    IEddystoneDevice eddystone = child.getEddystoneDevice();
+                    Log.i("setOnClick", "Id: " + eddystone.getInstanceId());
+
+                } else {
+                    Log.i("setOnClick", "No profile detected");
+
+                }
+
+
+                return false;
+            }
+        });
 
     }
 
@@ -208,5 +250,6 @@ public class BeaconsScanActivity extends BaseActivity implements ProximityManage
             }
         });
     }
+
 
 }

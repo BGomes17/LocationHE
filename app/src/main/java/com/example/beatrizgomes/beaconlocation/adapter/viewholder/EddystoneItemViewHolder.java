@@ -3,7 +3,6 @@ package com.example.beatrizgomes.beaconlocation.adapter.viewholder;
 import android.view.View;
 import android.widget.TextView;
 
-
 import com.example.beatrizgomes.beaconlocation.R;
 
 import butterknife.Bind;
@@ -36,6 +35,7 @@ public class EddystoneItemViewHolder {
     public TextView rssi;
     @Bind(R.id.proximity)
     public  TextView proximity;
+
 
     public EddystoneItemViewHolder(View rootView) {
         ButterKnife.bind(this, rootView);

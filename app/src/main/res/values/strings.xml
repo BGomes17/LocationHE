@@ -9,15 +9,17 @@
 
 
     <!-- IBEACON -->
-    <string name="device_name">Device Name</string>
+    <string name="device_name">Nome</string>
     <string name="proximity_uuid">Proximity UUID</string>
+    <string name="battery">Bateria</string>
+    <string name="distance">Distância</string>
     <string name="major">Major</string>
     <string name="minor">Minor</string>
-    <string name="beacon_unique_id">Beacon Unique Id</string>
-    <string name="firmware_version">Firmware version</string>
+    <string name="beacon_unique_id">Beacon Id</string>
+    <string name="profile">Perfil</string>
     <string name="rssi">Rssi</string>
-    <string name="power">Power</string>
-    <string name="proximity">Proximity</string>
+    <string name="power">Tx Power</string>
+    <string name="proximity">Proximidade</string>
 
 
 <!-- EDDYSTONE -->
@@ -30,6 +32,9 @@
     <string name="pdu_count">Pdu count: %1$d</string>
     <string name="time_since_power_up">Time since power up: %1$d seconds</string>
     <string name="telemetry_version">Telemetry version: %1$d</string>
+    <string name="title_activity_beacon_details">BeaconDetails</string>
+
+    <string name="hello_world">Hello world!</string>
 
 
 </resources>

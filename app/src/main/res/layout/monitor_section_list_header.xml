@@ -6,6 +6,7 @@
     android:weightSum="5">
 
     <ImageView
+        android:id="@+id/image_beacon"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"

@@ -9,14 +9,13 @@ import android.widget.BaseExpandableListAdapter;
 import com.example.beatrizgomes.beaconlocation.R;
 import com.example.beatrizgomes.beaconlocation.adapter.viewholder.EddystoneItemViewHolder;
 import com.example.beatrizgomes.beaconlocation.adapter.viewholder.GroupViewHolder;
-import com.example.beatrizgomes.beaconlocation.adapter.viewholder.IBeaconItemViewHolder;
+import com.example.beatrizgomes.beaconlocation.adapter.viewholder.IBeaconListViewHolder;
 import com.example.beatrizgomes.beaconlocation.model.BeaconWrapper;
 import com.kontakt.sdk.android.ble.device.DeviceProfile;
 import com.kontakt.sdk.android.ble.device.EddystoneDevice;
 import com.kontakt.sdk.android.common.profile.IBeaconDevice;
 import com.kontakt.sdk.android.common.profile.IEddystoneDevice;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +31,7 @@ public class BeaconsScanMonitorAdapter extends BaseExpandableListAdapter {
     private List<DeviceProfile> groupList;
     private Map<DeviceProfile, List<BeaconWrapper>> childMap;
 
+
     public BeaconsScanMonitorAdapter(Context context) {
 
         this.context = context;
@@ -42,7 +42,7 @@ public class BeaconsScanMonitorAdapter extends BaseExpandableListAdapter {
     }
 
     private void createGroups() {
-        
+        //Log.i("BeaconAdapter", "createGroups()");
         groupList.add(DeviceProfile.IBEACON);
         groupList.add(DeviceProfile.EDDYSTONE);
         childMap.put(DeviceProfile.IBEACON, new ArrayList<BeaconWrapper>());
@@ -51,8 +51,9 @@ public class BeaconsScanMonitorAdapter extends BaseExpandableListAdapter {
     }
 
     public void replaceIBeacons(List<IBeaconDevice> iBeacons) {
-        
+
         List<BeaconWrapper> beaconWrappers = childMap.get(DeviceProfile.IBEACON);
+        //Log.i("BeaconAdapter", "replaceIbeacons(), list size: " + beaconWrappers.size());
         beaconWrappers.clear();
         for (IBeaconDevice iBeacon : iBeacons) {
             beaconWrappers.add(new BeaconWrapper(null, iBeacon, DeviceProfile.IBEACON));
@@ -62,10 +63,11 @@ public class BeaconsScanMonitorAdapter extends BaseExpandableListAdapter {
     }
 
     public void replaceEddystoneBeacons(List<IEddystoneDevice> eddystoneDevices) {
-        List<BeaconWrapper> eddystonesWrappers = childMap.get(DeviceProfile.EDDYSTONE);
-        eddystonesWrappers.clear();
+        List<BeaconWrapper> eddystoneWrappers = childMap.get(DeviceProfile.EDDYSTONE);
+        //Log.i("BeaconAdapter", "replaceEddystones(), list size: " + eddystoneWrappers.size());
+        eddystoneWrappers.clear();
         for (IEddystoneDevice eddystoneDevice : eddystoneDevices) {
-            eddystonesWrappers.add(new BeaconWrapper(eddystoneDevice, null, DeviceProfile.EDDYSTONE));
+            eddystoneWrappers.add(new BeaconWrapper(eddystoneDevice, null, DeviceProfile.EDDYSTONE));
         }
         notifyDataSetChanged();
     }
@@ -87,6 +89,7 @@ public class BeaconsScanMonitorAdapter extends BaseExpandableListAdapter {
 
     @Override
     public BeaconWrapper getChild(int groupPosition, int childPosition) {
+
         return childMap.get(getGroup(groupPosition)).get(childPosition);
     }
 
@@ -111,17 +114,28 @@ public class BeaconsScanMonitorAdapter extends BaseExpandableListAdapter {
         DeviceProfile group = getGroup(groupPosition);
         
         if(convertView == null) {
-            convertView = createHeader();
+            convertView = createHeader(group);
         }
         
         setHeaderTitle(group.name(), convertView, groupPosition);
         return convertView;
     }
 
-    protected View createHeader() {
+    protected View createHeader(DeviceProfile group) {
 
         View convertView = createView(R.layout.monitor_section_list_header);
+
         GroupViewHolder groupViewHolder = new GroupViewHolder(convertView);
+
+        /*switch (group) {
+
+            case IBEACON: imageBeacon.setImageResource(R.drawable.ibeacon_logo);
+                break;
+            case EDDYSTONE: imageBeacon.setImageResource(R.drawable.eddystone_logo);
+                break;
+
+        }*/
+
         convertView.setTag(groupViewHolder);
 
         return convertView;
@@ -131,6 +145,7 @@ public class BeaconsScanMonitorAdapter extends BaseExpandableListAdapter {
         groupViewHolder.header.setText(title + "( " + getChildrenCount(groupPosition) + " )");
     }
 
+    /*   */
     View createView(final int viewId) {
         final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         return inflater.inflate(viewId, null);
@@ -140,27 +155,22 @@ public class BeaconsScanMonitorAdapter extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 
         BeaconWrapper child = getChild(groupPosition, childPosition);
+
         if (DeviceProfile.IBEACON == child.getDeviceProfile()){
-            if (convertView == null || (!(convertView.getTag() instanceof IBeaconItemViewHolder))) {
+
+
+            if (convertView == null || (!(convertView.getTag() instanceof IBeaconListViewHolder))) {
                 convertView = createView(R.layout.beacon_list_row);
-                final IBeaconItemViewHolder childViewHolder = new IBeaconItemViewHolder(convertView);
+                final IBeaconListViewHolder childViewHolder = new IBeaconListViewHolder(convertView);
                 convertView.setTag(childViewHolder);
             }
 
             IBeaconDevice device = child.getBeaconDevice();
-            final IBeaconItemViewHolder childViewHolder = (IBeaconItemViewHolder) convertView.getTag();
-            /*childViewHolder.nameTextView.setText(String.format("%s: %s (%s)", device.getName(),
-                    device.getAddress(),
-                    new DecimalFormat("#.##").format(device.getDistance())));*/
+            final IBeaconListViewHolder childViewHolder = (IBeaconListViewHolder) convertView.getTag();
+
             childViewHolder.nameTextView.setText(String.format("Device Name: %s", device.getUniqueId()));
-            //childViewHolder.proximityUUIDTextView.setText(String.format("Proximity UUID: %s", device.getProximityUUID().toString()));
-            //childViewHolder.majorTextView.setText(String.format("Major: %d", device.getMajor()));
-            //childViewHolder.minorTextView.setText(String.format("Minor: %d", device.getMinor()));
-            childViewHolder.rssiTextView.setText(String.format("Rssi: %.2f", device.getRssi()));
-            //childViewHolder.txPowerTextView.setText(String.format("Tx Power: %d", device.getTxPower()));
-            //childViewHolder.beaconUniqueIdTextView.setText(String.format("Beacon Unique Id: %s", device.getUniqueId()));
-            //childViewHolder.firmwareVersionTextView.setText(String.format("Firmware version: %d", device.getFirmwareVersion()));
-            childViewHolder.proximityTextView.setText(String.format("Proximity: %s", device.getProximity()));
+            childViewHolder.proximityTextView.setText(String.format("Proximidade: %s", device.getProximity()));
+
         } else if (DeviceProfile.EDDYSTONE == child.getDeviceProfile()) {
             if (convertView == null || (!(convertView.getTag() instanceof EddystoneItemViewHolder))) {
                 convertView = createView(R.layout.eddystone_list_row);
@@ -190,7 +200,8 @@ public class BeaconsScanMonitorAdapter extends BaseExpandableListAdapter {
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return false;
+        return true;
     }
+
 
 }

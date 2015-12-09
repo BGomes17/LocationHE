@@ -206,17 +206,20 @@
     <eat-comment/>
     <string name="action_settings">Settings</string>
     <string name="app_name">BeaconLocation</string>
+    <string name="battery">Bateria</string>
     <string name="battery_voltage">Battery voltage: %1$d mV</string>
-    <string name="beacon_unique_id">Beacon Unique Id</string>
-    <string name="device_name">Device Name</string>
-    <string name="firmware_version">Firmware version</string>
+    <string name="beacon_unique_id">Beacon Id</string>
+    <string name="device_name">Nome</string>
+    <string name="distance">Distância</string>
+    <string name="hello_world">Hello world!</string>
     <string name="instance">Instance: %1$s</string>
     <string name="major">Major</string>
     <string name="minor">Minor</string>
     <string name="namespace">Namespace: %1$s</string>
     <string name="pdu_count">Pdu count: %1$d</string>
-    <string name="power">Power</string>
-    <string name="proximity">Proximity</string>
+    <string name="power">Tx Power</string>
+    <string name="profile">Perfil</string>
+    <string name="proximity">Proximidade</string>
     <string name="proximity_uuid">Proximity UUID</string>
     <string name="rssi">Rssi</string>
     <!-- From: file:/Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
@@ -228,6 +231,7 @@
     <string name="temperature">Temperature: %1$f \u00b0C</string>
     <string name="time_since_power_up">Time since power up: %1$d seconds</string>
     <string name="title_activity_base">BaseActivity</string>
+    <string name="title_activity_beacon_details">BeaconDetails</string>
     <string name="title_activity_beacons_scan">BeaconsScan</string>
     <string name="title_activity_beacons_scan_monitor_adapter">BeaconsScanMonitorAdapter</string>
     <string name="tx_power_level">Power: %1$d dBm</string>
