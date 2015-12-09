@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.beatrizgomes.beaconlocation.R;
 import com.kontakt.sdk.android.ble.util.BluetoothUtils;
@@ -29,8 +28,8 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
 
+        ButterKnife.bind(this);
         setUpActionBar(toolbar);
         setUpActionBarTitle(getString(R.string.app_name));
 

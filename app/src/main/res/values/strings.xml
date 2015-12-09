@@ -26,15 +26,17 @@
     <string name="namespace">Namespace: %1$s</string>
     <string name="instance">Instance: %1$s</string>
     <string name="url">Url: %1$s</string>
-    <string name="tx_power_level">Power: %1$d dBm</string>
-    <string name="temperature">Temperature: %1$f \u00b0C</string>
-    <string name="battery_voltage">Battery voltage: %1$d mV</string>
+    <string name="tx_power_level">Potência: %1$d dBm</string>
+    <string name="temperature">Temperatura: %1$f \u00b0C</string>
+    <string name="battery_voltage">Bateria: %1$d mV</string>
     <string name="pdu_count">Pdu count: %1$d</string>
     <string name="time_since_power_up">Time since power up: %1$d seconds</string>
     <string name="telemetry_version">Telemetry version: %1$d</string>
+
     <string name="title_activity_beacon_details">BeaconDetails</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_eddystone_details">EddystoneDetails</string>
 
 
 </resources>

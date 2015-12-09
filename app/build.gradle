@@ -24,10 +24,11 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.jakewharton:butterknife:7.0.1'
-    compile 'com.android.support:appcompat-v7:22.2.0'
     compile files('libs/butterknife-7.0.1.jar')
     compile files('libs/kontakt.io-android-sdk2.0.1.jar')
     compile files('libs/kontakt.io-ble-sdk2.0.1.jar')
     compile files('libs/kontakt.io-common-sdk2.0.1.jar')
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.android.support:appcompat-v7:22.2.1'
+    compile 'com.android.support:design:22.2.1'
 }

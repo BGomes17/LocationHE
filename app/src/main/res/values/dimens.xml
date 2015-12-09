@@ -4,4 +4,5 @@
     <dimen name="activity_horizontal_margin">8dp</dimen>
     <dimen name="activity_vertical_margin">8dp</dimen>
     <dimen name="monitor_section_list_header_header_layout_height">80dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

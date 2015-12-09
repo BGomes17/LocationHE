@@ -2,53 +2,67 @@
 <items version="2" >
 
     <item
-        jar="/Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
-        jumboMode="false" revision="23.0.2" sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
-        <dex
-            dex="/Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-6c771cf4cefa676af49ec191ad4e4c87d982679b.jar" />
-    </item>
-    <item
-        jar="/Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar"
+        jar="C:\Users\a8pin\AndroidStudioProjects\BeaconLocation\app\libs\kontakt.io-ble-sdk2.0.1.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
-        <dex dex="/Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/build/intermediates/pre-dexed/debug/classes-d1eafad45f21386036212e8aaef52357e82865b3.jar" />
+        sha1="c89c2073f8cf16b268916d57a8130fce581f6235">
+        <dex dex="C:\Users\a8pin\AndroidStudioProjects\BeaconLocation\app\build\intermediates\pre-dexed\debug\kontakt.io-ble-sdk2.0.1-996351e3b66d5db1b9de895e972d13ab172adf9b.jar" />
     </item>
     <item
-        jar="/Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/libs/kontakt.io-common-sdk2.0.1.jar"
-        jumboMode="false" revision="23.0.2" sha1="e6222d5f8052d2c34aa2f990c9ff217b13fec29c">
-        <dex
-            dex="/Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/build/intermediates/pre-dexed/debug/kontakt.io-common-sdk2.0.1-8d2005f18034b8b6a4f3aa1f0b0445383792daf4.jar" />
+        jar="C:\Users\a8pin\AndroidStudioProjects\BeaconLocation\app\libs\butterknife-7.0.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
+        <dex dex="C:\Users\a8pin\AndroidStudioProjects\BeaconLocation\app\build\intermediates\pre-dexed\debug\butterknife-7.0.1-df5e9353b341a0c62818f3c42346feb5c867cd72.jar" />
     </item>
     <item
-        jar="/Users/beatrizgomes/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/7.0.1/d5d13ea991eab0252e3710e5df3d6a9d4b21d461/butterknife-7.0.1.jar"
-        jumboMode="false" revision="23.0.2" sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
-        <dex
-            dex="/Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/build/intermediates/pre-dexed/debug/butterknife-7.0.1-275524459430e59deb754813e0a04ffe0a3b5389.jar" />
+        jar="C:\Users\a8pin\AndroidStudioProjects\BeaconLocation\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex dex="C:\Users\a8pin\AndroidStudioProjects\BeaconLocation\app\build\intermediates\pre-dexed\debug\classes-5de13ff52c057782ee14240090e24544a14a2ec8.jar" />
     </item>
     <item
-        jar="/Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
-        jumboMode="false" revision="23.0.2" sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
-        <dex
-            dex="/Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/build/intermediates/pre-dexed/debug/classes-739b6815da7904af344c3ab68d70006aaa807890.jar" />
+        jar="C:\Users\a8pin\AndroidStudioProjects\BeaconLocation\app\build\intermediates\exploded-aar\com.android.support\design\22.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="1821601ddbec5ff125653097812823388700af74">
+        <dex dex="C:\Users\a8pin\AndroidStudioProjects\BeaconLocation\app\build\intermediates\pre-dexed\debug\classes-106d386308b4f0c07699f51cf3680f3291522aff.jar" />
     </item>
     <item
-        jar="/Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/libs/kontakt.io-ble-sdk2.0.1.jar"
-        jumboMode="false" revision="23.0.2" sha1="c89c2073f8cf16b268916d57a8130fce581f6235">
-        <dex
-            dex="/Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/build/intermediates/pre-dexed/debug/kontakt.io-ble-sdk2.0.1-36361793802e34e2e2a2c67531e2e45fe82e75d3.jar" />
+        jar="C:\Users\a8pin\AndroidStudioProjects\BeaconLocation\app\libs\kontakt.io-common-sdk2.0.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e6222d5f8052d2c34aa2f990c9ff217b13fec29c">
+        <dex dex="C:\Users\a8pin\AndroidStudioProjects\BeaconLocation\app\build\intermediates\pre-dexed\debug\kontakt.io-common-sdk2.0.1-c2f227aaf0f917636779c5cc7bea6ef14c801a36.jar" />
     </item>
     <item
-        jar="/Users/beatrizgomes/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
-        jumboMode="false" revision="23.0.2" sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
-        <dex
-            dex="/Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-05e76b794e532d12a5aed68762d0a385cf5c5b8e.jar" />
+        jar="C:\Users\a8pin\AndroidStudioProjects\BeaconLocation\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\libs\internal_impl-22.2.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="C:\Users\a8pin\AndroidStudioProjects\BeaconLocation\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.1-b73a324ffd1df81b21e8b5ce1400efeabc63ec76.jar" />
     </item>
     <item
-        jar="/Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/libs/kontakt.io-android-sdk2.0.1.jar"
-        jumboMode="false" revision="23.0.2" sha1="019335f26f9348b23d1d9026726f3e6503129f89">
-        <dex
-            dex="/Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/build/intermediates/pre-dexed/debug/kontakt.io-android-sdk2.0.1-5810d809fbba9b18c1d3a12580a1094a097cbce5.jar" />
+        jar="C:\Users\a8pin\AndroidStudioProjects\BeaconLocation\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="C:\Users\a8pin\AndroidStudioProjects\BeaconLocation\app\build\intermediates\pre-dexed\debug\classes-c772d06615f9c46b326db851e2d64a6b5648e7d0.jar" />
+    </item>
+    <item
+        jar="C:\Users\a8pin\AppData\Local\Android\android-sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.1\support-annotations-22.2.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
+        <dex dex="C:\Users\a8pin\AndroidStudioProjects\BeaconLocation\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.1-198cbc25501b6868ebc44adb4a8caf68298f13d8.jar" />
+    </item>
+    <item
+        jar="C:\Users\a8pin\AndroidStudioProjects\BeaconLocation\app\libs\kontakt.io-android-sdk2.0.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="019335f26f9348b23d1d9026726f3e6503129f89">
+        <dex dex="C:\Users\a8pin\AndroidStudioProjects\BeaconLocation\app\build\intermediates\pre-dexed\debug\kontakt.io-android-sdk2.0.1-7d8188e1fe283472edce5d5f5ec9f43cd083c116.jar" />
     </item>
 
 </items>

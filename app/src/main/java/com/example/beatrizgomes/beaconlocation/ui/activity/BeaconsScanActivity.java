@@ -98,6 +98,7 @@ public class BeaconsScanActivity extends BaseActivity implements ProximityManage
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
 
                 BeaconWrapper child = beaconsAdapter.getChild(groupPosition, childPosition);
+
                 if (DeviceProfile.IBEACON == child.getDeviceProfile()) {
                     IBeaconDevice ibeacon = child.getBeaconDevice();
 
@@ -109,7 +110,10 @@ public class BeaconsScanActivity extends BaseActivity implements ProximityManage
                     startActivity(intentDetailsActivity);
                 } else if (DeviceProfile.EDDYSTONE == child.getDeviceProfile()) {
                     IEddystoneDevice eddystone = child.getEddystoneDevice();
-                    Log.i("setOnClick", "Id: " + eddystone.getInstanceId());
+
+                    Intent intentDetailsActivity = new Intent(BeaconsScanActivity.this, EddystoneDetails.class);
+                    intentDetailsActivity.putExtra("EDDYSTONE", eddystone);
+                    startActivity(intentDetailsActivity);
 
                 } else {
                     Log.i("setOnClick", "No profile detected");

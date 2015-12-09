@@ -35,13 +35,21 @@
         </activity>
         <activity
             android:name=".ui.activity.IBeaconDetails"
-            android:label="@string/title_activity_beacon_details"></activity>
+            android:label="@string/title_activity_beacon_details" />
 
         <service
             android:name="com.kontakt.sdk.android.ble.service.ProximityService"
             android:exported="false" />
 
-
+        <activity
+            android:name=".ui.activity.EddystoneDetails"
+            android:label="@string/title_activity_eddystone_details"
+            android:parentActivityName=".ui.activity.BeaconsScanActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.beatrizgomes.beaconlocation.ui.activity.BeaconsScanActivity" />
+        </activity>
     </application>
 
 </manifest>
