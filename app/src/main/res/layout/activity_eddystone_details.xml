@@ -71,6 +71,16 @@
             android:layout_weight="1"
             android:layout_gravity="left"
             android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="20dp"
+        android:paddingLeft="25dp">
 
         <TextView
             android:id="@+id/instance_id"
@@ -81,6 +91,7 @@
             android:layout_gravity="right"
             android:textSize="16sp" />
     </LinearLayout>
+
 
     <LinearLayout
         android:orientation="horizontal"
