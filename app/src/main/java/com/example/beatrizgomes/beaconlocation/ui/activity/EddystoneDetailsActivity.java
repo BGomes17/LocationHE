@@ -1,20 +1,25 @@
 package com.example.beatrizgomes.beaconlocation.ui.activity;
 
+import android.bluetooth.BluetoothAdapter;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import com.example.beatrizgomes.beaconlocation.R;
+import com.example.beatrizgomes.beaconlocation.adapter.monitor.BeaconsDetailsScan;
+import com.kontakt.sdk.android.ble.discovery.BluetoothDeviceEvent;
+import com.kontakt.sdk.android.ble.manager.ProximityManager;
+import com.kontakt.sdk.android.ble.util.BluetoothUtils;
 import com.kontakt.sdk.android.common.profile.IEddystoneDevice;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class EddystoneDetails extends BaseActivity {
+public class EddystoneDetailsActivity extends BaseActivity implements ProximityManager.ProximityListener {
 
 
     @Bind(R.id.toolbar)
@@ -50,6 +55,14 @@ public class EddystoneDetails extends BaseActivity {
     @Bind(R.id.eddystone_url)
     public TextView urlTextView;
 
+    BeaconsDetailsScan beaconScan;
+
+    IEddystoneDevice eddystone;
+
+    TextView dist;
+
+    private static final int REQUEST_CODE_ENABLE_BLUETOOTH = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,14 +71,16 @@ public class EddystoneDetails extends BaseActivity {
         ButterKnife.bind(this);
         setUpActionBar(toolbar);
         setUpActionBarTitle("Detalhes");
-        View convertView;
 
-        IEddystoneDevice eddystone;
+        beaconScan = new BeaconsDetailsScan(this);
+
+
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             // Recebe da atividade anterior o parâmetro 'SECRET_WORD'
             eddystone = (IEddystoneDevice) extras.get("EDDYSTONE");
+
             nameTextView.setText(Html.fromHtml("<b>Nome:</b> &nbsp;&nbsp;" + eddystone.getNamespaceId()));
             distanceTextView.setText(Html.fromHtml("<b>Distância:</b> &nbsp;&nbsp;"));
             distanceTextView.append(String.format("%.2f cm", eddystone.getDistance()));
@@ -78,7 +93,11 @@ public class EddystoneDetails extends BaseActivity {
             proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;" + eddystone.getProximity()));
             temperatureTextView.setText(Html.fromHtml("<b>Temperatura:</b> &nbsp;&nbsp;" + eddystone.getTemperature() + "ºC"));
             urlTextView.setText(Html.fromHtml("<b>Url:</b> &nbsp;&nbsp;" + eddystone.getUrl()));
+
+            beaconScan.beaconAdrress = eddystone.getAddress();
+            beaconScan.startScan(EddystoneDetailsActivity.this);
         }
+
 
     }
 
@@ -103,6 +122,51 @@ public class EddystoneDetails extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onScanStart() {
+
+    }
+
+    @Override
+    public void onScanStop() {
+
+    }
+
+    @Override
+    public void onEvent(BluetoothDeviceEvent bluetoothDeviceEvent) {
+
+        switch (bluetoothDeviceEvent.getEventType()) {
+            case DEVICES_UPDATE:
+                beaconScan.onDevicesUpdateEvent(bluetoothDeviceEvent);
+                break;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (!BluetoothUtils.isBluetoothEnabled()) {
+            final Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(intent, REQUEST_CODE_ENABLE_BLUETOOTH);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        beaconScan.deviceManager.finishScan();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        beaconScan.deviceManager.disconnect();
+        beaconScan.deviceManager = null;
+        ButterKnife.unbind(this);
     }
 
 }

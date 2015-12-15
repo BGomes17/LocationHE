@@ -51,10 +51,9 @@ public class BeaconsScanActivity extends BaseActivity implements ProximityManage
 
     private BeaconsScanMonitorAdapter beaconsAdapter;
 
-
     private ProximityManager deviceManager;
 
-    private ScanContext scanContext;
+    public ScanContext scanContext;
 
     private List<EventType> eventTypes = new ArrayList<EventType>() {{
         add(EventType.DEVICES_UPDATE);
@@ -125,7 +124,7 @@ public class BeaconsScanActivity extends BaseActivity implements ProximityManage
                 } else if (DeviceProfile.EDDYSTONE == child.getDeviceProfile()) {
                     IEddystoneDevice eddystone = child.getEddystoneDevice();
 
-                    Intent intentDetailsActivity = new Intent(BeaconsScanActivity.this, EddystoneDetails.class);
+                    Intent intentDetailsActivity = new Intent(BeaconsScanActivity.this, EddystoneDetailsActivity.class);
                     intentDetailsActivity.putExtra("EDDYSTONE", eddystone);
                     startActivity(intentDetailsActivity);
 
@@ -163,7 +162,7 @@ public class BeaconsScanActivity extends BaseActivity implements ProximityManage
         return super.onOptionsItemSelected(item);
     }
 
-    private void startScan() {
+    public void startScan() {
 
         deviceManager.initializeScan(getOrCreateScanContext(), new OnServiceReadyListener() {
             @Override
@@ -179,7 +178,7 @@ public class BeaconsScanActivity extends BaseActivity implements ProximityManage
 
     }
 
-    private ScanContext getOrCreateScanContext() {
+    public ScanContext getOrCreateScanContext() {
         if (scanContext == null) {
             scanContext = new ScanContext.Builder()
                     .setScanMode(ProximityManager.SCAN_MODE_BALANCED)
@@ -240,7 +239,7 @@ public class BeaconsScanActivity extends BaseActivity implements ProximityManage
         }
     }
 
-    private void onDevicesUpdateEvent(BluetoothDeviceEvent event) {
+    public void onDevicesUpdateEvent(BluetoothDeviceEvent event) {
         DeviceProfile deviceProfile = event.getDeviceProfile();
         switch (deviceProfile) {
             case IBEACON:
