@@ -37,6 +37,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_eddystone_details">EddystoneDetails</string>
+    <string name="title_activity_remover">remover</string>
 
 
 </resources>

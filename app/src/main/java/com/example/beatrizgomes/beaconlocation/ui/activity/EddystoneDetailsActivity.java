@@ -3,10 +3,13 @@ package com.example.beatrizgomes.beaconlocation.ui.activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.beatrizgomes.beaconlocation.R;
@@ -66,13 +69,22 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eddystone_details);
 
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+
+            }
+        });
+
         ButterKnife.bind(this);
         setUpActionBar(toolbar);
         setUpActionBarTitle("Detalhes");
 
         beaconScan = new BeaconsDetailsScan(this);
-
-
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
