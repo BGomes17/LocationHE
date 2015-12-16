@@ -42,7 +42,7 @@
         android:layout_gravity="center_horizontal"
         android:paddingBottom="20dp"
         android:paddingTop="30dp"
-        android:paddingLeft="25dp">
+        android:paddingLeft="15dp">
 
         <TextView
             android:id="@+id/ibeacon_name"
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:paddingBottom="20dp"
-        android:paddingLeft="25dp">
+        android:paddingLeft="15dp">
 
         <TextView
             android:id="@+id/major"
@@ -87,7 +87,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="20dp"
-        android:paddingLeft="25dp">
+        android:paddingLeft="15dp">
 
         <TextView
             android:id="@+id/power"
@@ -113,7 +113,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="20dp"
-        android:paddingLeft="25dp">
+        android:paddingLeft="15dp">
 
         <TextView
             android:id="@+id/rssi"
@@ -140,7 +140,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="20dp"
-        android:paddingLeft="25dp">
+        android:paddingLeft="15dp">
 
         <TextView
             android:id="@+id/proximity"

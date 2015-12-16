@@ -42,7 +42,6 @@ public class BeaconsScanMonitorAdapter extends BaseExpandableListAdapter {
     }
 
     private void createGroups() {
-        //Log.i("BeaconAdapter", "createGroups()");
         groupList.add(DeviceProfile.IBEACON);
         groupList.add(DeviceProfile.EDDYSTONE);
         childMap.put(DeviceProfile.IBEACON, new ArrayList<BeaconWrapper>());
@@ -53,7 +52,6 @@ public class BeaconsScanMonitorAdapter extends BaseExpandableListAdapter {
     public void replaceIBeacons(List<IBeaconDevice> iBeacons) {
 
         List<BeaconWrapper> beaconWrappers = childMap.get(DeviceProfile.IBEACON);
-        //Log.i("BeaconAdapter", "replaceIbeacons(), list size: " + beaconWrappers.size());
         beaconWrappers.clear();
         for (IBeaconDevice iBeacon : iBeacons) {
             beaconWrappers.add(new BeaconWrapper(null, iBeacon, DeviceProfile.IBEACON));
@@ -127,14 +125,18 @@ public class BeaconsScanMonitorAdapter extends BaseExpandableListAdapter {
 
         GroupViewHolder groupViewHolder = new GroupViewHolder(convertView);
 
-        /*switch (group) {
+        /*ImageView imageBeacon = (ImageView) ((Activity) context).findViewById(R.id.image_beacon);
+
+
+        switch (group) {
 
             case IBEACON: imageBeacon.setImageResource(R.drawable.ibeacon_logo);
                 break;
             case EDDYSTONE: imageBeacon.setImageResource(R.drawable.eddystone_logo);
                 break;
 
-        }*/
+        }
+        */
 
         convertView.setTag(groupViewHolder);
 
@@ -169,7 +171,18 @@ public class BeaconsScanMonitorAdapter extends BaseExpandableListAdapter {
             final IBeaconListViewHolder childViewHolder = (IBeaconListViewHolder) convertView.getTag();
 
             childViewHolder.nameTextView.setText(String.format("Device Name: %s", device.getUniqueId()));
-            childViewHolder.proximityTextView.setText(String.format("Proximidade: %s", device.getProximity()));
+            childViewHolder.rssiTextView.setText(String.format("Rssi: %s", device.getRssi()));
+            switch (device.getProximity().toString()) {
+                case "FAR":
+                    childViewHolder.proximityTextView.setText(String.format("Proximidade: Longe"));
+                    break;
+                case "NEAR":
+                    childViewHolder.proximityTextView.setText(String.format("Proximidade: Perto"));
+                    break;
+                case "IMMEDIATE":
+                    childViewHolder.proximityTextView.setText(String.format("Proximidade: Muito Perto"));
+                    break;
+            }
 
         } else if (DeviceProfile.EDDYSTONE == child.getDeviceProfile()) {
             if (convertView == null || (!(convertView.getTag() instanceof EddystoneItemViewHolder))) {
@@ -182,17 +195,19 @@ public class BeaconsScanMonitorAdapter extends BaseExpandableListAdapter {
             EddystoneItemViewHolder viewHolder = (EddystoneItemViewHolder) convertView.getTag();
 
             Context context = convertView.getContext();
-            //viewHolder.namespace.setText(context.getString(R.string.namespace, eddystoneDevice.getNamespaceId()));
             viewHolder.instance.setText(context.getString(R.string.instance, eddystoneDevice.getInstanceId()));
-            //viewHolder.url.setText(context.getString(R.string.url, eddystoneDevice.getUrl()));
-            //viewHolder.txPowerTextView.setText(context.getString(R.string.tx_power_level, eddystoneDevice.getTxPower()));
-            //viewHolder.temperature.setText(context.getString(R.string.temperature, eddystoneDevice.getTemperature()));
-            //viewHolder.batteryVoltage.setText(context.getString(R.string.battery_voltage, eddystoneDevice.getBatteryVoltage()));
-            //viewHolder.pduCount.setText(context.getString(R.string.pdu_count, eddystoneDevice.getPduCount()));
-            //viewHolder.timeSincePowerUp.setText(context.getString(R.string.time_since_power_up, eddystoneDevice.getTimeSincePowerUp()));
-            //viewHolder.telemetryVersion.setText(context.getString(R.string.telemetry_version, eddystoneDevice.getTelemetryVersion()));
             viewHolder.rssi.setText(String.format("Rssi: %.2f", eddystoneDevice.getRssi()));
-            viewHolder.proximity.setText(String.format("Proximity: %s", eddystoneDevice.getProximity()));
+            switch (eddystoneDevice.getProximity().toString()) {
+                case "FAR":
+                    viewHolder.proximity.setText(String.format("Proximidade: Longe"));
+                    break;
+                case "NEAR":
+                    viewHolder.proximity.setText(String.format("Proximidade: Perto"));
+                    break;
+                case "IMMEDIATE":
+                    viewHolder.proximity.setText(String.format("Proximidade: Muito Perto"));
+                    break;
+            }
 
         }
         return convertView;

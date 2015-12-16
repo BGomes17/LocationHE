@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="30dp"
-        android:paddingLeft="15dp">
+        android:paddingLeft="10dp">
 
         <ImageView
             android:layout_width="59dp"
@@ -42,7 +42,7 @@
         android:layout_gravity="center_horizontal"
         android:paddingBottom="20dp"
         android:paddingTop="30dp"
-        android:paddingLeft="25dp">
+        android:paddingLeft="15dp">
 
         <TextView
             android:id="@+id/eddystone_name"
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:paddingBottom="20dp"
-        android:paddingLeft="25dp">
+        android:paddingLeft="15dp">
 
         <TextView
             android:id="@+id/namespace"
@@ -80,7 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:paddingBottom="20dp"
-        android:paddingLeft="25dp">
+        android:paddingLeft="15dp">
 
         <TextView
             android:id="@+id/instance_id"
@@ -98,7 +98,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="20dp"
-        android:paddingLeft="25dp">
+        android:paddingLeft="15dp">
 
         <TextView
             android:id="@+id/txpower_level"
@@ -106,8 +106,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_gravity="left"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:layout_gravity="left" />
 
         <TextView
             android:id="@+id/battery_voltage"
@@ -124,7 +124,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="20dp"
-        android:paddingLeft="25dp">
+        android:paddingLeft="15dp">
 
         <TextView
             android:id="@+id/eddystone_rssi"
@@ -151,7 +151,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="20dp"
-        android:paddingLeft="25dp">
+        android:paddingLeft="15dp">
 
         <TextView
             android:id="@+id/eddystone_proximity"
@@ -179,7 +179,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="20dp"
-        android:paddingLeft="25dp">
+        android:paddingLeft="15dp">
 
         <TextView
             android:id="@+id/eddystone_url"

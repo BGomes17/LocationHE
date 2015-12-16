@@ -75,19 +75,19 @@ ADDED from /Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/src/main
 		ADDED from /Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/src/main/AndroidManifest.xml:34:13-56
 	android:name
 		ADDED from /Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/src/main/AndroidManifest.xml:33:13-53
-activity#com.example.beatrizgomes.beaconlocation.ui.activity.IBeaconDetails
+activity#com.example.beatrizgomes.beaconlocation.ui.activity.IBeaconDetailsActivity
 ADDED from /Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/src/main/AndroidManifest.xml:36:9-38:69
 	android:label
 		ADDED from /Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/src/main/AndroidManifest.xml:38:13-66
 	android:name
-		ADDED from /Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/src/main/AndroidManifest.xml:37:13-55
+		ADDED from /Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/src/main/AndroidManifest.xml:37:13-63
 service#com.kontakt.sdk.android.ble.service.ProximityService
 ADDED from /Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/src/main/AndroidManifest.xml:40:9-42:40
 	android:exported
 		ADDED from /Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/src/main/AndroidManifest.xml:42:13-37
 	android:name
 		ADDED from /Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/src/main/AndroidManifest.xml:41:13-80
-activity#com.example.beatrizgomes.beaconlocation.ui.activity.EddystoneDetails
+activity#com.example.beatrizgomes.beaconlocation.ui.activity.EddystoneDetailsActivity
 ADDED from /Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/src/main/AndroidManifest.xml:44:9-52:20
 	android:label
 		ADDED from /Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/src/main/AndroidManifest.xml:46:13-69
@@ -96,7 +96,7 @@ ADDED from /Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/src/main
 	android:parentActivityName
 		ADDED from /Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/src/main/AndroidManifest.xml:47:13-74
 	android:name
-		ADDED from /Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/src/main/AndroidManifest.xml:45:13-57
+		ADDED from /Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/src/main/AndroidManifest.xml:45:13-65
 meta-data#android.support.PARENT_ACTIVITY
 ADDED from /Users/beatrizgomes/AndroidStudioProjects/BeaconLocation/app/src/main/AndroidManifest.xml:49:13-51:107
 	android:name

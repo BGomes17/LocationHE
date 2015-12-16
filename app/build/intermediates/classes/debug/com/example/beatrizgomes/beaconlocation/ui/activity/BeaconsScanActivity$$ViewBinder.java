@@ -8,8 +8,8 @@ import butterknife.ButterKnife.ViewBinder;
 public class BeaconsScanActivity$$ViewBinder<T extends com.example.beatrizgomes.beaconlocation.ui.activity.BeaconsScanActivity> implements ViewBinder<T> {
   @Override public void bind(final Finder finder, final T target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131492983, "field 'toolbar'");
-    target.toolbar = finder.castView(view, 2131492983, "field 'toolbar'");
+    view = finder.findRequiredView(source, 2131492984, "field 'toolbar'");
+    target.toolbar = finder.castView(view, 2131492984, "field 'toolbar'");
     view = finder.findRequiredView(source, 2131492953, "field 'listBeacons'");
     target.listBeacons = finder.castView(view, 2131492953, "field 'listBeacons'");
   }

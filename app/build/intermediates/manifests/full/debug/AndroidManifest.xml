@@ -40,7 +40,7 @@
             android:label="@string/title_activity_base" >
         </activity>
         <activity
-            android:name="com.example.beatrizgomes.beaconlocation.ui.activity.IBeaconDetails"
+            android:name="com.example.beatrizgomes.beaconlocation.ui.activity.IBeaconDetailsActivity"
             android:label="@string/title_activity_beacon_details" />
 
         <service
@@ -48,7 +48,7 @@
             android:exported="false" />
 
         <activity
-            android:name="com.example.beatrizgomes.beaconlocation.ui.activity.EddystoneDetails"
+            android:name="com.example.beatrizgomes.beaconlocation.ui.activity.EddystoneDetailsActivity"
             android:label="@string/title_activity_eddystone_details"
             android:parentActivityName="com.example.beatrizgomes.beaconlocation.ui.activity.BeaconsScanActivity"
             android:theme="@style/AppTheme" >

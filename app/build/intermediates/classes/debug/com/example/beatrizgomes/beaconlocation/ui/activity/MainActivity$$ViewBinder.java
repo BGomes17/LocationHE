@@ -18,8 +18,8 @@ public class MainActivity$$ViewBinder<T extends com.example.beatrizgomes.beaconl
           target.startScan();
         }
       });
-    view = finder.findRequiredView(source, 2131492983, "field 'toolbar'");
-    target.toolbar = finder.castView(view, 2131492983, "field 'toolbar'");
+    view = finder.findRequiredView(source, 2131492984, "field 'toolbar'");
+    target.toolbar = finder.castView(view, 2131492984, "field 'toolbar'");
   }
 
   @Override public void unbind(T target) {

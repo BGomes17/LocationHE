@@ -59,8 +59,6 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
 
     IEddystoneDevice eddystone;
 
-    TextView dist;
-
     private static final int REQUEST_CODE_ENABLE_BLUETOOTH = 1;
 
     @Override
@@ -78,6 +76,7 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
+
             // Recebe da atividade anterior o parâmetro 'SECRET_WORD'
             eddystone = (IEddystoneDevice) extras.get("EDDYSTONE");
 
@@ -86,16 +85,27 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
             distanceTextView.append(String.format("%.2f cm", eddystone.getDistance()));
             namespaceTextView.setText(Html.fromHtml("<b>Namespace:</b> &nbsp;&nbsp;" + eddystone.getNamespaceId()));
             instaceTextView.setText(Html.fromHtml("<b>Instance:</b> &nbsp;&nbsp;" + eddystone.getInstanceId()));
-            //profileTextView.setText(String.format("Perfil: IBeacon"));
             rssiTextView.setText(Html.fromHtml("<b>RSSI:</b> &nbsp;&nbsp;" + eddystone.getRssi() + " dBm"));
             txPowerTextView.setText(Html.fromHtml("<b>Tx Power:</b> &nbsp;&nbsp;" + eddystone.getTxPower()));
             batteryTextView.setText(Html.fromHtml("<b>Bateria:</b> &nbsp;&nbsp;" + eddystone.getBatteryVoltage() + "V"));
-            proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;" + eddystone.getProximity()));
             temperatureTextView.setText(Html.fromHtml("<b>Temperatura:</b> &nbsp;&nbsp;" + eddystone.getTemperature() + "ºC"));
             urlTextView.setText(Html.fromHtml("<b>Url:</b> &nbsp;&nbsp;" + eddystone.getUrl()));
 
-            beaconScan.beaconAdrress = eddystone.getAddress();
+            switch (eddystone.getProximity().toString()) {
+                case "FAR":
+                    proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;Longe"));
+                    break;
+                case "NEAR":
+                    proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;Perto"));
+                    break;
+                case "IMMEDIATE":
+                    proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;Muito Perto"));
+                    break;
+            }
+
+            beaconScan.beaconAddress = eddystone.getAddress();
             beaconScan.startScan(EddystoneDetailsActivity.this);
+
         }
 
 

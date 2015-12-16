@@ -19,6 +19,7 @@ import com.kontakt.sdk.android.ble.discovery.eddystone.EddystoneDeviceEvent;
 import com.kontakt.sdk.android.ble.discovery.ibeacon.IBeaconDeviceEvent;
 import com.kontakt.sdk.android.ble.manager.ProximityManager;
 import com.kontakt.sdk.android.ble.rssi.RssiCalculators;
+import com.kontakt.sdk.android.common.profile.IBeaconDevice;
 import com.kontakt.sdk.android.common.profile.IEddystoneDevice;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class BeaconsDetailsScan {
 
     public ScanContext scanContext;
 
-    public String beaconAdrress;
+    public String beaconAddress;
 
     private List<EventType> eventTypes = new ArrayList<EventType>() {{
         add(EventType.DEVICES_UPDATE);
@@ -106,7 +107,7 @@ public class BeaconsDetailsScan {
         List<IEddystoneDevice> eddystoneDevices = event.getDeviceList();
 
         for (IEddystoneDevice eddystoneDevice : eddystoneDevices) {
-            if (eddystoneDevice.getAddress().equals(beaconAdrress)) {
+            if (eddystoneDevice.getAddress().equals(beaconAddress)) {
 
                 TextView distanceTextView = (TextView) ((Activity) context).findViewById(R.id.eddystone_distance);
                 distanceTextView.setText(Html.fromHtml("<b>Distância:</b> &nbsp;&nbsp;"));
@@ -117,22 +118,58 @@ public class BeaconsDetailsScan {
                 rssiTextView.append(String.format("%.2f dBm", eddystoneDevice.getRssi()));
 
                 TextView proximityTextView = (TextView) ((Activity) context).findViewById(R.id.eddystone_proximity);
-                proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;" + eddystoneDevice.getProximity()));
 
-                //eddystoneDetailsActivity.updateInfo(eddystoneDevice);
+                switch (eddystoneDevice.getProximity().toString()) {
+                    case "FAR":
+                        proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;Longe"));
+                        break;
+                    case "NEAR":
+                        proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;Perto"));
+                        break;
+                    case "IMMEDIATE":
+                        proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;Mto Perto"));
+                        break;
+                }
+                //proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;" + eddystoneDevice.getProximity()));
+
             }
         }
     }
 
     private void onIBeaconDevicesList(final IBeaconDeviceEvent event) {
-        /*runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                beaconsAdapter.replaceIBeacons(event.getDeviceList());
-            }
-        });*/
-    }
 
+        List<IBeaconDevice> iBeaconDevices = event.getDeviceList();
+
+        for (IBeaconDevice iBeaconDevice : iBeaconDevices) {
+            if (iBeaconDevice.getAddress().equals(beaconAddress)) {
+
+                TextView distanceTextView = (TextView) ((Activity) context).findViewById(R.id.distance);
+                distanceTextView.setText(Html.fromHtml("<b>Distância:</b> &nbsp;&nbsp;"));
+                distanceTextView.append(String.format("%.2f m", iBeaconDevice.getDistance()));
+
+                TextView rssiTextView = (TextView) ((Activity) context).findViewById(R.id.rssi);
+                rssiTextView.setText(Html.fromHtml("<b>RSSI:</b> &nbsp;&nbsp;"));
+                rssiTextView.append(String.format("%.2f dBm", iBeaconDevice.getRssi()));
+
+                TextView proximityTextView = (TextView) ((Activity) context).findViewById(R.id.proximity);
+                switch (iBeaconDevice.getProximity().toString()) {
+                    case "FAR":
+                        proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;Longe"));
+                        break;
+                    case "NEAR":
+                        proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;Perto"));
+                        break;
+                    case "IMMEDIATE":
+                        proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;Mto Perto"));
+                        break;
+                }
+
+                //proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;" + iBeaconDevice.getProximity()));
+            }
+
+        }
+
+    }
 }
 
 

@@ -18,6 +18,9 @@ public class IBeaconListViewHolder {
     @Bind(R.id.list_proximity)
     public TextView proximityTextView;
 
+    @Bind(R.id.list_rssi)
+    public TextView rssiTextView;
+
     public IBeaconListViewHolder(View rootView) {
         ButterKnife.bind(this, rootView);
     }
