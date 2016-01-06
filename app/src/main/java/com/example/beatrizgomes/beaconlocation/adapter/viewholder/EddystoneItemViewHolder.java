@@ -31,6 +31,8 @@ public class EddystoneItemViewHolder {
     @Bind(R.id.telemetry_version)
     public TextView telemetryVersion;
     */
+    @Bind(R.id.eddystone_list_distance)
+    public TextView distance;
     @Bind(R.id.rssi)
     public TextView rssi;
     @Bind(R.id.proximity)

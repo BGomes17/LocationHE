@@ -197,6 +197,7 @@ public class BeaconsScanMonitorAdapter extends BaseExpandableListAdapter {
             Context context = convertView.getContext();
             viewHolder.instance.setText(context.getString(R.string.instance, eddystoneDevice.getInstanceId()));
             viewHolder.rssi.setText(String.format("Rssi: %.2f", eddystoneDevice.getRssi()));
+            viewHolder.distance.setText(String.format("Distância: %.2f", eddystoneDevice.getDistance()));
             switch (eddystoneDevice.getProximity().toString()) {
                 case "FAR":
                     viewHolder.proximity.setText(String.format("Proximidade: Longe"));

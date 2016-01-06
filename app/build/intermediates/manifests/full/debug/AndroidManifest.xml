@@ -33,12 +33,10 @@
         </activity>
         <activity
             android:name="com.example.beatrizgomes.beaconlocation.ui.activity.BeaconsScanActivity"
-            android:label="@string/title_activity_beacons_scan" >
-        </activity>
+            android:label="@string/title_activity_beacons_scan" />
         <activity
             android:name="com.example.beatrizgomes.beaconlocation.ui.activity.BaseActivity"
-            android:label="@string/title_activity_base" >
-        </activity>
+            android:label="@string/title_activity_base" />
         <activity
             android:name="com.example.beatrizgomes.beaconlocation.ui.activity.IBeaconDetailsActivity"
             android:label="@string/title_activity_beacon_details" />
@@ -56,6 +54,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.beatrizgomes.beaconlocation.ui.activity.BeaconsScanActivity" />
         </activity>
+        <activity
+            android:name="com.example.beatrizgomes.beaconlocation.ui.activity.DistanceRangeActivity"
+            android:label="@string/title_activity_distance_range"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

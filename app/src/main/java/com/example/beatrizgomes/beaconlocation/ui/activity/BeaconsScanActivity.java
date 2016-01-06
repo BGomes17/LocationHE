@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import com.example.beatrizgomes.beaconlocation.R;
 import com.example.beatrizgomes.beaconlocation.adapter.monitor.BeaconsScanMonitorAdapter;
@@ -105,6 +106,7 @@ public class BeaconsScanActivity extends BaseActivity implements ProximityManage
 
                     // Inicia a atividade seguinte
                     startActivity(intentDetailsActivity);
+                    //finish();
 
                 } else if (DeviceProfile.EDDYSTONE == child.getDeviceProfile()) {
                     IEddystoneDevice eddystone = child.getEddystoneDevice();

@@ -22,7 +22,7 @@
     <string name="proximity">Proximidade</string>
 
 
-<!-- EDDYSTONE -->
+    <!-- EDDYSTONE -->
     <string name="namespace">Namespace: %1$s</string>
     <string name="instance">Instance: %1$s</string>
     <string name="url">Url: %1$s</string>
@@ -38,6 +38,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_eddystone_details">EddystoneDetails</string>
     <string name="title_activity_remover">remover</string>
+    <string name="title_activity_remove">remove</string>
+    <string name="title_activity_distance_range">DistanceRangeActivity</string>
 
 
 </resources>
