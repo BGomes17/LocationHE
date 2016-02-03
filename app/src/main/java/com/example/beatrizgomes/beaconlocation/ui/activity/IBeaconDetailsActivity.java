@@ -1,16 +1,20 @@
 package com.example.beatrizgomes.beaconlocation.ui.activity;
 
 import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.beatrizgomes.beaconlocation.R;
-import com.example.beatrizgomes.beaconlocation.adapter.monitor.BeaconsDetailsScan;
+import com.example.beatrizgomes.beaconlocation.adapter.monitor.IBeaconsDetailsScan;
 import com.kontakt.sdk.android.ble.discovery.BluetoothDeviceEvent;
 import com.kontakt.sdk.android.ble.manager.ProximityManager;
 import com.kontakt.sdk.android.ble.util.BluetoothUtils;
@@ -21,56 +25,50 @@ import butterknife.ButterKnife;
 
 public class IBeaconDetailsActivity extends BaseActivity implements ProximityManager.ProximityListener {
 
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
-
+    private static final int REQUEST_CODE_ENABLE_BLUETOOTH = 1;
+    public static Context context;
     @Bind(R.id.ibeacon_name)
     public TextView nameTextView;
-
     @Bind(R.id.power)
     public TextView txPowerTextView;
-
     @Bind(R.id.major)
     public TextView majorTextView;
-
     @Bind(R.id.minor)
     public TextView minorTextView;
-
     @Bind(R.id.rssi)
     public TextView rssiTextView;
-
     @Bind(R.id.proximity)
     public TextView proximityTextView;
-
     @Bind(R.id.distance)
     public TextView distanceTextView;
-
     @Bind(R.id.battery)
     public TextView batteryTextView;
-
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
     IBeaconDevice ibeacon;
+    IBeaconsDetailsScan beaconScan;
 
-    BeaconsDetailsScan beaconScan;
-
-    private static final int REQUEST_CODE_ENABLE_BLUETOOTH = 1;
-
-
+    public static Context getContext() {
+        return context;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beacon_details);
 
+        context = this;
+
         ButterKnife.bind(this);
         setUpActionBar(toolbar);
         setUpActionBarTitle("Detalhes");
 
-        beaconScan = new BeaconsDetailsScan(this);
+
 
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            // Recebe da atividade anterior o parâmetro 'SECRET_WORD'
+            // Recebe da atividade anterior como parâmetro o dispositivo selecionado
             ibeacon = (IBeaconDevice) extras.get("IBEACON");
             nameTextView.setText(Html.fromHtml("<b>Nome:</b> &nbsp;&nbsp;" + ibeacon.getUniqueId()));
             distanceTextView.setText(Html.fromHtml("<b>Distância:</b> &nbsp;&nbsp;"));
@@ -80,7 +78,7 @@ public class IBeaconDetailsActivity extends BaseActivity implements ProximityMan
             rssiTextView.setText(Html.fromHtml("<b>RSSI:</b> &nbsp;&nbsp;" + ibeacon.getRssi() + " dBm"));
             txPowerTextView.setText(Html.fromHtml("<b>Tx Power:</b> &nbsp;&nbsp;" + ibeacon.getTxPower()));
             batteryTextView.setText(Html.fromHtml("<b>Bateria:</b> &nbsp;&nbsp;" + ibeacon.getBatteryPower() + "%"));
-
+            beaconScan = new IBeaconsDetailsScan(this, ibeacon.getName());
             switch (ibeacon.getProximity().toString()) {
                 case "FAR":
                     proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;Longe"));
@@ -92,9 +90,22 @@ public class IBeaconDetailsActivity extends BaseActivity implements ProximityMan
                     proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;Muito Perto"));
                     break;
             }
-
-            beaconScan.beaconAddress = ibeacon.getAddress();
             beaconScan.startScan(IBeaconDetailsActivity.this);
+
+            FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_eddystone);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent intentDetailsActivity = new Intent(IBeaconDetailsActivity.this, DistanceRangeActivity.class);
+                    intentDetailsActivity.putExtra("IBEACON", ibeacon);
+                    startActivity(intentDetailsActivity);
+                    finish();
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+
+                }
+            });
 
         }
 
@@ -168,4 +179,17 @@ public class IBeaconDetailsActivity extends BaseActivity implements ProximityMan
         ButterKnife.unbind(this);
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            // do something on back.
+            Intent intentScanActivity = new Intent(IBeaconDetailsActivity.this, BeaconsScanActivity.class);
+            //intentScanActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intentScanActivity);
+            finish();
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
 }

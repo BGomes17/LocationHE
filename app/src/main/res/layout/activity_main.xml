@@ -12,23 +12,31 @@
         android:layout_height="?android:attr/actionBarSize" />
 
     <ImageView
-        android:paddingTop="150dp"
-        android:paddingBottom="80dp"
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
         android:layout_gravity="center_horizontal"
+        android:paddingBottom="80dp"
+        android:paddingTop="150dp"
         android:src="@drawable/logo_he" />
 
     <Button
+        android:id="@+id/button_scan"
         android:layout_width="149dp"
         android:layout_height="wrap_content"
-        android:text="Scan Beacons"
-        android:id="@+id/button_scan"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
         android:background="#00B8FF"
+        android:text="Scan Beacons"
         android:textColor="#FFFFFF"
         android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="New Button" />
+
 </LinearLayout>

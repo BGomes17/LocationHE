@@ -40,6 +40,7 @@
     <string name="title_activity_remover">remover</string>
     <string name="title_activity_remove">remove</string>
     <string name="title_activity_distance_range">DistanceRangeActivity</string>
+    <string name="title_activity_test">TestActivity</string>
 
 
 </resources>

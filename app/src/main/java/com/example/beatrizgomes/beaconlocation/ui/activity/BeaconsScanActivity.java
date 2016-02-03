@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,32 +42,26 @@ import butterknife.ButterKnife;
 
 public class BeaconsScanActivity extends BaseActivity implements ProximityManager.ProximityListener{
 
+    private static final int REQUEST_CODE_ENABLE_BLUETOOTH = 1;
+    public ScanContext scanContext;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-
     @Bind(R.id.list_beacons)
     ExpandableListView listBeacons;
-
-    private static final int REQUEST_CODE_ENABLE_BLUETOOTH = 1;
-
     private BeaconsScanMonitorAdapter beaconsAdapter;
-
     private ProximityManager deviceManager;
-
-    public ScanContext scanContext;
-
     private List<EventType> eventTypes = new ArrayList<EventType>() {{
         add(EventType.DEVICES_UPDATE);
     }};
 
     private IBeaconScanContext beaconScanContext = new IBeaconScanContext.Builder()
             .setEventTypes(eventTypes) //only specified events we be called on callback
-            .setRssiCalculator(RssiCalculators.newLimitedMeanRssiCalculator(5))
+            .setRssiCalculator(RssiCalculators.DEFAULT)
             .build();
 
     private EddystoneScanContext eddystoneScanContext = new EddystoneScanContext.Builder()
             .setEventTypes(eventTypes)
-            .setRssiCalculator(RssiCalculators.newLimitedMeanRssiCalculator(5))
+            .setRssiCalculator(RssiCalculators.DEFAULT)
             .build();
 
 
@@ -102,11 +97,12 @@ public class BeaconsScanActivity extends BaseActivity implements ProximityManage
 
                     // Cria intent para a passagem para a atividade seguinte
                     Intent intentDetailsActivity = new Intent(BeaconsScanActivity.this, IBeaconDetailsActivity.class);
+                    intentDetailsActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intentDetailsActivity.putExtra("IBEACON", ibeacon);
 
                     // Inicia a atividade seguinte
                     startActivity(intentDetailsActivity);
-                    //finish();
+                    finish();
 
                 } else if (DeviceProfile.EDDYSTONE == child.getDeviceProfile()) {
                     IEddystoneDevice eddystone = child.getEddystoneDevice();
@@ -114,6 +110,7 @@ public class BeaconsScanActivity extends BaseActivity implements ProximityManage
                     Intent intentDetailsActivity = new Intent(BeaconsScanActivity.this, EddystoneDetailsActivity.class);
                     intentDetailsActivity.putExtra("EDDYSTONE", eddystone);
                     startActivity(intentDetailsActivity);
+                    finish();
 
                 } else {
                     Log.i("setOnClick", "No profile detected");
@@ -142,8 +139,17 @@ public class BeaconsScanActivity extends BaseActivity implements ProximityManage
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        /*if (id == R.id.action_settings) {
             return true;
+        }*/
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Toast.makeText(this, "OLA", Toast.LENGTH_LONG).show();
+                Intent intentScanActivity = new Intent(BeaconsScanActivity.this, MainActivity.class);
+                //intentScanActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intentScanActivity);
+                finish();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -238,21 +244,37 @@ public class BeaconsScanActivity extends BaseActivity implements ProximityManage
         }
     }
     private void onEddystoneDevicesList(final EddystoneDeviceEvent event) {
-        runOnUiThread(new Runnable() {
+        /*runOnUiThread(new Runnable() {
             @Override
-            public void run() {
+            public void run() {*/
+
                 beaconsAdapter.replaceEddystoneBeacons(event.getDeviceList());
-            }
-        });
+        /* }
+        });*/
     }
 
     private void onIBeaconDevicesList(final IBeaconDeviceEvent event) {
-        runOnUiThread(new Runnable() {
+        /*runOnUiThread(new Runnable() {
             @Override
-            public void run() {
+            public void run() {*/
                 beaconsAdapter.replaceIBeacons(event.getDeviceList());
-            }
-        });
+            /*}
+        });*/
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            // do something on back.
+            Intent intentScanActivity = new Intent(BeaconsScanActivity.this, MainActivity.class);
+            //intentScanActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intentScanActivity);
+            finish();
+            return true;
+        }
+
+
+        return super.onKeyDown(keyCode, event);
     }
 
 

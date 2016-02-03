@@ -5,16 +5,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.beatrizgomes.beaconlocation.R;
-import com.example.beatrizgomes.beaconlocation.adapter.monitor.BeaconsDetailsScan;
+import com.example.beatrizgomes.beaconlocation.adapter.monitor.EddystoneDetailsScan;
 import com.kontakt.sdk.android.ble.discovery.BluetoothDeviceEvent;
 import com.kontakt.sdk.android.ble.manager.ProximityManager;
 import com.kontakt.sdk.android.ble.util.BluetoothUtils;
@@ -26,46 +26,36 @@ import butterknife.ButterKnife;
 public class EddystoneDetailsActivity extends BaseActivity implements ProximityManager.ProximityListener {
 
 
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
-
+    private static final int REQUEST_CODE_ENABLE_BLUETOOTH = 1;
+    public static Context context;
     @Bind(R.id.eddystone_name)
     public TextView nameTextView;
-
     @Bind(R.id.txpower_level)
     public TextView txPowerTextView;
-
     @Bind(R.id.namespace)
     public TextView namespaceTextView;
-
     @Bind(R.id.instance_id)
     public TextView instaceTextView;
-
     @Bind(R.id.eddystone_rssi)
     public TextView rssiTextView;
-
     @Bind(R.id.eddystone_proximity)
     public TextView proximityTextView;
-
     @Bind(R.id.eddystone_distance)
     public TextView distanceTextView;
-
     @Bind(R.id.battery_voltage)
     public TextView batteryTextView;
-
     @Bind(R.id.eddystone_temperature)
     public TextView temperatureTextView;
-
     @Bind(R.id.eddystone_url)
     public TextView urlTextView;
-
-    BeaconsDetailsScan beaconScan;
-
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+    EddystoneDetailsScan beaconScan;
     IEddystoneDevice eddystone;
 
-    public static Context context;
-
-    private static final int REQUEST_CODE_ENABLE_BLUETOOTH = 1;
+    public static Context getContext() {
+        return context;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,12 +72,10 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
 
-            // Recebe da atividade anterior o parâmetro 'SECRET_WORD'
+            // Recebe da atividade anterior como parâmetro o dispositivo selecionado
             eddystone = (IEddystoneDevice) extras.get("EDDYSTONE");
 
-            beaconScan = new BeaconsDetailsScan(this, eddystone.getInstanceId());
-
-
+            beaconScan = new EddystoneDetailsScan(this, eddystone.getInstanceId());
             nameTextView.setText(Html.fromHtml("<b>Nome:</b> &nbsp;&nbsp;" + eddystone.getNamespaceId()));
             distanceTextView.setText(Html.fromHtml("<b>Distância:</b> &nbsp;&nbsp;"));
             distanceTextView.append(String.format("%.2f cm", eddystone.getDistance()));
@@ -112,11 +100,11 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
                     break;
             }
 
-            //beaconScan.beaconIdentifier = eddystone.getInstanceId();
+            beaconScan.beaconIdentifier = eddystone.getInstanceId();
             beaconScan.startScan(EddystoneDetailsActivity.this);
 
         }
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_eddystone);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -124,7 +112,7 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
                 Intent intentDetailsActivity = new Intent(EddystoneDetailsActivity.this, DistanceRangeActivity.class);
                 intentDetailsActivity.putExtra("EDDYSTONE", eddystone);
                 startActivity(intentDetailsActivity);
-                //finish();
+                finish();
                 /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
 
@@ -132,7 +120,6 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
         });
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -202,8 +189,17 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
         ButterKnife.unbind(this);
     }
 
-    public static Context getContext() {
-        return context;
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent intentScanActivity = new Intent(EddystoneDetailsActivity.this, BeaconsScanActivity.class);
+            startActivity(intentScanActivity);
+            finish();
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
+
 
 }

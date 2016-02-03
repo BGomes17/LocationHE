@@ -21,8 +21,12 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.button_scan)
     Button btn_scan;
 
+    @Bind(R.id.button)
+    Button btn_test;
+
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +61,18 @@ public class MainActivity extends BaseActivity {
 
     @OnClick (R.id.button_scan)
     void startScan() {
+        Intent intentScanActivity = new Intent(MainActivity.this, BeaconsScanActivity.class);
+        //intentScanActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intentScanActivity);
+        finish();
+    }
 
-        startActivity(new Intent(MainActivity.this, BeaconsScanActivity.class));
+    @OnClick(R.id.button)
+    void teste() {
+        Intent intentScanActivity = new Intent(MainActivity.this, TestActivity.class);
+        //intentScanActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intentScanActivity);
+        finish();
     }
 /*
     @Override

@@ -18,12 +18,23 @@ public class MainActivity$$ViewBinder<T extends com.example.beatrizgomes.beaconl
           target.startScan();
         }
       });
-    view = finder.findRequiredView(source, 2131493014, "field 'toolbar'");
-    target.toolbar = finder.castView(view, 2131493014, "field 'toolbar'");
+    view = finder.findRequiredView(source, 2131492993, "field 'btn_test' and method 'teste'");
+    target.btn_test = finder.castView(view, 2131492993, "field 'btn_test'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.teste();
+        }
+      });
+    view = finder.findRequiredView(source, 2131493015, "field 'toolbar'");
+    target.toolbar = finder.castView(view, 2131493015, "field 'toolbar'");
   }
 
   @Override public void unbind(T target) {
     target.btn_scan = null;
+    target.btn_test = null;
     target.toolbar = null;
   }
 }
