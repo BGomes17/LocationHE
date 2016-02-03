@@ -69,10 +69,10 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.button)
     void teste() {
-        Intent intentScanActivity = new Intent(MainActivity.this, TestActivity.class);
+       // Intent intentScanActivity = new Intent(MainActivity.this, TestActivity.class);
         //intentScanActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intentScanActivity);
-        finish();
+        //startActivity(intentScanActivity);
+        //finish();
     }
 /*
     @Override

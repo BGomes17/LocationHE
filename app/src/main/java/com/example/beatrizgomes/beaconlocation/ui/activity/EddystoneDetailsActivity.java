@@ -63,12 +63,14 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
     public TextView temperatureTextView;
     @Bind(R.id.eddystone_url)
     public TextView urlTextView;
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+
     public ProximityManager deviceManager;
     public ScanContext scanContext;
     public String beaconIdentifier;
     public double distance;
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
+
     IEddystoneDevice eddystone;
     private List<EventType> eventTypes = new ArrayList<EventType>() {{
         add(EventType.DEVICES_UPDATE);
@@ -94,7 +96,7 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
             // Recebe da atividade anterior como parâmetro o dispositivo selecionado
             eddystone = (IEddystoneDevice) extras.get("EDDYSTONE");
 
-            //beaconScan = new EddystoneDetailsScan(this, eddystone.getInstanceId());
+
             nameTextView.setText(Html.fromHtml("<b>Nome:</b> &nbsp;&nbsp;" + eddystone.getNamespaceId()));
             distanceTextView.setText(Html.fromHtml("<b>Distância:</b> &nbsp;&nbsp;"));
             distanceTextView.append(String.format("%.2f cm", eddystone.getDistance()));
@@ -129,7 +131,7 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
             @Override
             public void onClick(View view) {
 
-                Intent intentDetailsActivity = new Intent(EddystoneDetailsActivity.this, DistanceRangeActivity.class);
+                Intent intentDetailsActivity = new Intent(EddystoneDetailsActivity.this, DistanceRangeEddystoneActivity.class);
                 intentDetailsActivity.putExtra("EDDYSTONE", eddystone);
                 startActivity(intentDetailsActivity);
                 finish();

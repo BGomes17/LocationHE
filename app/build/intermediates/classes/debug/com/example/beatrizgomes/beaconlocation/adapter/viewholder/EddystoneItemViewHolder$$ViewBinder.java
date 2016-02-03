@@ -8,10 +8,10 @@ import butterknife.ButterKnife.ViewBinder;
 public class EddystoneItemViewHolder$$ViewBinder<T extends com.example.beatrizgomes.beaconlocation.adapter.viewholder.EddystoneItemViewHolder> implements ViewBinder<T> {
   @Override public void bind(final Finder finder, final T target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131492983, "field 'instance'");
-    target.instance = finder.castView(view, 2131492983, "field 'instance'");
-    view = finder.findRequiredView(source, 2131492998, "field 'distance'");
-    target.distance = finder.castView(view, 2131492998, "field 'distance'");
+    view = finder.findRequiredView(source, 2131492985, "field 'instance'");
+    target.instance = finder.castView(view, 2131492985, "field 'instance'");
+    view = finder.findRequiredView(source, 2131492999, "field 'distance'");
+    target.distance = finder.castView(view, 2131492999, "field 'distance'");
     view = finder.findRequiredView(source, 2131492973, "field 'rssi'");
     target.rssi = finder.castView(view, 2131492973, "field 'rssi'");
     view = finder.findRequiredView(source, 2131492975, "field 'proximity'");

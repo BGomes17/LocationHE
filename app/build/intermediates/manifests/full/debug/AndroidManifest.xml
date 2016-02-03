@@ -64,6 +64,16 @@
             android:name="com.example.beatrizgomes.beaconlocation.ui.activity.TestActivity"
             android:label="@string/title_activity_test" >
         </activity>
+        <activity
+            android:name="com.example.beatrizgomes.beaconlocation.ui.activity.DistanceRangeEddystoneActivity"
+            android:label="@string/title_activity_distance_range_eddystone"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name="com.example.beatrizgomes.beaconlocation.ui.activity.DistanceRangeIBeaconActivity"
+            android:label="@string/title_activity_distance_range_ibeacon"
+            android:theme="@style/AppTheme" >
+        </activity>
     </application>
 
 </manifest>
