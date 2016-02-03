@@ -2,14 +2,12 @@ package com.example.beatrizgomes.beaconlocation.adapter.monitor;
 
 import android.app.Activity;
 import android.content.Context;
-import android.text.Html;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.beatrizgomes.beaconlocation.R;
 import com.example.beatrizgomes.beaconlocation.ui.activity.DistanceRangeActivity;
-import com.example.beatrizgomes.beaconlocation.ui.activity.EddystoneDetailsActivity;
 import com.kontakt.sdk.android.ble.configuration.ActivityCheckConfiguration;
 import com.kontakt.sdk.android.ble.configuration.ForceScanConfiguration;
 import com.kontakt.sdk.android.ble.configuration.scan.EddystoneScanContext;
@@ -115,7 +113,7 @@ public class EddystoneDetailsScan {
 
         for (IEddystoneDevice eddystoneDevice : eddystoneDevices) {
 
-            if (context == EddystoneDetailsActivity.getContext()) {
+            /*if (context == EddystoneDetailsActivity.getContext()) {
 
                 TextView distanceTextView = (TextView) ((Activity) context).findViewById(R.id.eddystone_distance);
                 distanceTextView.setText(Html.fromHtml("<b>Distância:</b> &nbsp;&nbsp;"));
@@ -138,9 +136,10 @@ public class EddystoneDetailsScan {
                     case "IMMEDIATE":
                         proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;Mto Perto"));
                         break;
-                }*/
+                }//
 
-            } else if (context == DistanceRangeActivity.getContext()) {
+            } else */
+            if (context == DistanceRangeActivity.getContext()) {
                 ImageView imageDistance = (ImageView) ((Activity) context).findViewById(R.id.image_distance);
                 TextView distanceRangeTextView = (TextView) ((Activity) context).findViewById(R.id.distance_range);
                 TextView deviceNameTextView = (TextView) ((Activity) context).findViewById(R.id.name_indistance);
