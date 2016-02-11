@@ -34,6 +34,7 @@ import com.kontakt.sdk.android.common.profile.IBeaconDevice;
 import com.kontakt.sdk.android.common.profile.IEddystoneDevice;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.Bind;
@@ -42,6 +43,7 @@ import butterknife.ButterKnife;
 
 public class BeaconsScanActivity extends BaseActivity implements ProximityManager.ProximityListener{
 
+    public HashMap eddystoneName;
     private static final int REQUEST_CODE_ENABLE_BLUETOOTH = 1;
     public ScanContext scanContext;
     @Bind(R.id.toolbar)
@@ -69,6 +71,7 @@ public class BeaconsScanActivity extends BaseActivity implements ProximityManage
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beacons_scan);
+
 
         ButterKnife.bind(this);
         setUpActionBar(toolbar);
@@ -124,6 +127,7 @@ public class BeaconsScanActivity extends BaseActivity implements ProximityManage
 
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -144,7 +148,6 @@ public class BeaconsScanActivity extends BaseActivity implements ProximityManage
         }*/
         switch (item.getItemId()) {
             case android.R.id.home:
-                Toast.makeText(this, "OLA", Toast.LENGTH_LONG).show();
                 Intent intentScanActivity = new Intent(BeaconsScanActivity.this, MainActivity.class);
                 //intentScanActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intentScanActivity);

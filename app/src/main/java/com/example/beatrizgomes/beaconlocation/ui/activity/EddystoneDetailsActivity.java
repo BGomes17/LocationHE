@@ -1,6 +1,5 @@
 package com.example.beatrizgomes.beaconlocation.ui.activity;
 
-import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
@@ -16,23 +15,15 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.beatrizgomes.beaconlocation.R;
-import com.kontakt.sdk.android.ble.configuration.ActivityCheckConfiguration;
-import com.kontakt.sdk.android.ble.configuration.ForceScanConfiguration;
-import com.kontakt.sdk.android.ble.configuration.scan.EddystoneScanContext;
+import com.example.beatrizgomes.beaconlocation.adapter.monitor.EddystoneDetailsScan;
 import com.kontakt.sdk.android.ble.configuration.scan.ScanContext;
-import com.kontakt.sdk.android.ble.connection.OnServiceReadyListener;
-import com.kontakt.sdk.android.ble.device.DeviceProfile;
 import com.kontakt.sdk.android.ble.discovery.BluetoothDeviceEvent;
 import com.kontakt.sdk.android.ble.discovery.EventType;
-import com.kontakt.sdk.android.ble.discovery.eddystone.EddystoneDeviceEvent;
-import com.kontakt.sdk.android.ble.filter.eddystone.EddystoneFilters;
 import com.kontakt.sdk.android.ble.manager.ProximityManager;
-import com.kontakt.sdk.android.ble.rssi.RssiCalculators;
 import com.kontakt.sdk.android.ble.util.BluetoothUtils;
 import com.kontakt.sdk.android.common.profile.IEddystoneDevice;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;
@@ -63,23 +54,28 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
     public TextView temperatureTextView;
     @Bind(R.id.eddystone_url)
     public TextView urlTextView;
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
-
     public ProximityManager deviceManager;
     public ScanContext scanContext;
     public String beaconIdentifier;
     public double distance;
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+    EddystoneDetailsScan eddystoneScan;
 
     IEddystoneDevice eddystone;
     private List<EventType> eventTypes = new ArrayList<EventType>() {{
         add(EventType.DEVICES_UPDATE);
     }};
 
+    public static Context getContext() {
+        return context;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eddystone_details);
+
 
         context = this;
 
@@ -95,8 +91,7 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
 
             // Recebe da atividade anterior como parâmetro o dispositivo selecionado
             eddystone = (IEddystoneDevice) extras.get("EDDYSTONE");
-
-
+            //beaconScan = new EddystoneDetailsScan(this, eddystone.getInstanceId());
             nameTextView.setText(Html.fromHtml("<b>Nome:</b> &nbsp;&nbsp;" + eddystone.getNamespaceId()));
             distanceTextView.setText(Html.fromHtml("<b>Distância:</b> &nbsp;&nbsp;"));
             distanceTextView.append(String.format("%.2f cm", eddystone.getDistance()));
@@ -122,6 +117,8 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
             }
 
             beaconIdentifier = eddystone.getInstanceId();
+            eddystoneScan = new EddystoneDetailsScan(context, beaconIdentifier);
+
 
             Log.i("EddystoneDetails", "OnCreate(): ");
 
@@ -131,7 +128,7 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
             @Override
             public void onClick(View view) {
 
-                Intent intentDetailsActivity = new Intent(EddystoneDetailsActivity.this, DistanceRangeEddystoneActivity.class);
+                Intent intentDetailsActivity = new Intent(EddystoneDetailsActivity.this, DistanceRangeActivity.class);
                 intentDetailsActivity.putExtra("EDDYSTONE", eddystone);
                 startActivity(intentDetailsActivity);
                 finish();
@@ -184,7 +181,7 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
         Log.i("EddystoneDetails", "OnEvent(): ");
         switch (bluetoothDeviceEvent.getEventType()) {
             case DEVICES_UPDATE:
-                onDevicesUpdateEvent(bluetoothDeviceEvent);
+                eddystoneScan.onDevicesUpdateEvent(bluetoothDeviceEvent);
                 break;
         }
     }
@@ -198,7 +195,7 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
             startActivityForResult(intent, REQUEST_CODE_ENABLE_BLUETOOTH);
         }
         Log.i("EddystoneDetails", "onResume():");
-        startScan();
+        eddystoneScan.startScan(EddystoneDetailsActivity.this);
     }
 
     @Override
@@ -229,91 +226,7 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
     }
 
 
-    public void startScan() {
-        Log.i("EddystoneDetails", "startScan(): ");
-        Log.i("EddystoneDetails", "Beacon Id: " + beaconIdentifier);
-        deviceManager.initializeScan(getOrCreateScanContext(), new OnServiceReadyListener() {
-            @Override
-            public void onServiceReady() {
-                deviceManager.attachListener(EddystoneDetailsActivity.this);
-            }
 
-            @Override
-            public void onConnectionFailure() {
-                //Utils.showToast(BeaconsScanActivity.this, "Erro durante conexão");
-            }
-        });
-
-    }
-
-    public ScanContext getOrCreateScanContext() {
-
-        EddystoneScanContext eddystoneScanContext;
-
-        eddystoneScanContext = new EddystoneScanContext.Builder()
-                .setEventTypes(eventTypes)
-                .setDevicesUpdateCallbackInterval(350)
-                .setUIDFilters(Arrays.asList(
-                        EddystoneFilters.newUIDFilter("f7826da6bc5b71e0893e", beaconIdentifier)
-                ))
-                .setRssiCalculator(RssiCalculators.DEFAULT)
-                .build();
-
-        if (scanContext == null) {
-            scanContext = new ScanContext.Builder()
-                    .setScanMode(ProximityManager.SCAN_MODE_BALANCED)
-                    .setEddystoneScanContext(eddystoneScanContext)
-                    .setActivityCheckConfiguration(ActivityCheckConfiguration.DEFAULT)
-                    .setForceScanConfiguration(ForceScanConfiguration.DEFAULT)
-                    .build();
-        }
-
-        return scanContext;
-    }
-
-    public void onDevicesUpdateEvent(BluetoothDeviceEvent event) {
-        DeviceProfile deviceProfile = event.getDeviceProfile();
-        switch (deviceProfile) {
-            case EDDYSTONE:
-                onEddystoneDevicesList((EddystoneDeviceEvent) event);
-                break;
-        }
-    }
-
-    private void onEddystoneDevicesList(final EddystoneDeviceEvent event) {
-
-
-        List<IEddystoneDevice> eddystoneDevices = event.getDeviceList();
-
-        for (IEddystoneDevice eddystoneDevice : eddystoneDevices) {
-
-            TextView distanceTextView = (TextView) ((Activity) context).findViewById(R.id.eddystone_distance);
-            distanceTextView.setText(Html.fromHtml("<b>Distância:</b> &nbsp;&nbsp;"));
-            distanceTextView.append(String.format("%.2f cm", eddystoneDevice.getDistance()));
-
-            TextView rssiTextView = (TextView) ((Activity) context).findViewById(R.id.eddystone_rssi);
-            rssiTextView.setText(Html.fromHtml("<b>RSSI:</b> &nbsp;&nbsp;"));
-            rssiTextView.append(String.format("%.2f dBm", eddystoneDevice.getRssi()));
-
-            TextView proximityTextView = (TextView) ((Activity) context).findViewById(R.id.eddystone_proximity);
-
-                /*
-                switch (eddystoneDevice.getProximity().toString()) {
-                    case "FAR":
-                        proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;Longe"));
-                        break;
-                    case "NEAR":
-                        proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;Perto"));
-                        break;
-                    case "IMMEDIATE":
-                        proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;Mto Perto"));
-                        break;
-                }*/
-
-
-        }
-
-    }
 
 
 }
