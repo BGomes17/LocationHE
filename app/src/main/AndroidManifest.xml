@@ -37,6 +37,11 @@
             android:name=".ui.activity.IBeaconDetailsActivity"
             android:label="@string/title_activity_beacon_details" />
 
+        <activity
+            android:name=".ui.activity.DistanceRangeActivity"
+            android:label="@string/title_activity_distance_range"
+            android:theme="@style/AppTheme"/>
+
         <service
             android:name="com.kontakt.sdk.android.ble.service.ProximityService"
             android:exported="false" />
@@ -50,6 +55,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.beatrizgomes.beaconlocation.ui.activity.BeaconsScanActivity" />
         </activity>
+
+
 
     </application>
 

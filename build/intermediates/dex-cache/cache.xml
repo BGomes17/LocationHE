@@ -9,39 +9,11 @@
         <dex dex="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\build\intermediates\pre-dexed\debug\butterknife-7.0.1-2f322af795d910f58ec310af7a4b9795aa48be0a.jar" />
     </item>
     <item
-        jar="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\classes.jar"
+        jar="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\libs\kontakt.io-android-sdk2.0.1.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="f8efd0096475e0daf054267b61544e10dc776503">
-        <dex dex="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\build\intermediates\pre-dexed\debug\classes-9ba5581d793b788a7b0a59d727c60ac8c3d3e89f.jar" />
-    </item>
-    <item
-        jar="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\libs\kontakt.io-common-sdk2.0.1.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="e6222d5f8052d2c34aa2f990c9ff217b13fec29c">
-        <dex dex="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\build\intermediates\pre-dexed\debug\kontakt.io-common-sdk2.0.1-39bfd6311a1e7ac67a43e15907deb464e274ca13.jar" />
-    </item>
-    <item
-        jar="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\libs\kontakt.io-ble-sdk2.0.1.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="c89c2073f8cf16b268916d57a8130fce581f6235">
-        <dex dex="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\build\intermediates\pre-dexed\debug\kontakt.io-ble-sdk2.0.1-ba84b250de6c5dd6a20183e109ed13b41f75c627.jar" />
-    </item>
-    <item
-        jar="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\libs\internal_impl-22.2.1.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
-        <dex dex="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.1-4e89c029543ff34263650d2905d7b6a2354e6631.jar" />
-    </item>
-    <item
-        jar="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\build\intermediates\exploded-aar\com.android.support\design\22.2.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="1821601ddbec5ff125653097812823388700af74">
-        <dex dex="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\build\intermediates\pre-dexed\debug\classes-1611652548bd33c6e0995336d769f6e7868d5f01.jar" />
+        sha1="019335f26f9348b23d1d9026726f3e6503129f89">
+        <dex dex="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\build\intermediates\pre-dexed\debug\kontakt.io-android-sdk2.0.1-4581de8bab5c182f55d5126019e81a6488a47b85.jar" />
     </item>
     <item
         jar="C:\Users\a8pin\AppData\Local\Android\android-sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.1\support-annotations-22.2.1.jar"
@@ -51,6 +23,20 @@
         <dex dex="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.1-198cbc25501b6868ebc44adb4a8caf68298f13d8.jar" />
     </item>
     <item
+        jar="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\libs\kontakt.io-common-sdk2.0.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e6222d5f8052d2c34aa2f990c9ff217b13fec29c">
+        <dex dex="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\build\intermediates\pre-dexed\debug\kontakt.io-common-sdk2.0.1-39bfd6311a1e7ac67a43e15907deb464e274ca13.jar" />
+    </item>
+    <item
+        jar="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\libs\internal_impl-22.2.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.1-4e89c029543ff34263650d2905d7b6a2354e6631.jar" />
+    </item>
+    <item
         jar="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\jars\classes.jar"
         jumboMode="false"
         revision="23.0.2"
@@ -58,11 +44,25 @@
         <dex dex="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\build\intermediates\pre-dexed\debug\classes-cc0eeedc14e060b13558da9eb6d80a418d99089b.jar" />
     </item>
     <item
-        jar="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\libs\kontakt.io-android-sdk2.0.1.jar"
+        jar="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\classes.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="019335f26f9348b23d1d9026726f3e6503129f89">
-        <dex dex="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\build\intermediates\pre-dexed\debug\kontakt.io-android-sdk2.0.1-4581de8bab5c182f55d5126019e81a6488a47b85.jar" />
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\build\intermediates\pre-dexed\debug\classes-9ba5581d793b788a7b0a59d727c60ac8c3d3e89f.jar" />
+    </item>
+    <item
+        jar="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\build\intermediates\exploded-aar\com.android.support\design\22.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="1821601ddbec5ff125653097812823388700af74">
+        <dex dex="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\build\intermediates\pre-dexed\debug\classes-1611652548bd33c6e0995336d769f6e7868d5f01.jar" />
+    </item>
+    <item
+        jar="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\libs\kontakt.io-ble-sdk2.0.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="c89c2073f8cf16b268916d57a8130fce581f6235">
+        <dex dex="C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\build\intermediates\pre-dexed\debug\kontakt.io-ble-sdk2.0.1-ba84b250de6c5dd6a20183e109ed13b41f75c627.jar" />
     </item>
 
 </items>

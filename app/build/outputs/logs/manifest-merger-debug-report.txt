@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:2:1-56:12
+ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:2:1-63:12
 	xmlns:android
 		ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:2:11-69
 	package
@@ -30,7 +30,7 @@ ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidM
 	android:name
 		ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:8:22-71
 application
-ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:10:5-54:19
+ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:10:5-61:19
 MERGED from [com.android.support:appcompat-v7:22.2.1] C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:22.2.1] C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:design:22.2.1] C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\build\intermediates\exploded-aar\com.android.support\design\22.2.1\AndroidManifest.xml:22:5-20
@@ -89,28 +89,36 @@ ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidM
 		ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:38:13-66
 	android:name
 		ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:37:13-63
-service#com.kontakt.sdk.android.ble.service.ProximityService
-ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:40:9-42:40
-	android:exported
-		ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:42:13-37
-	android:name
-		ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:41:13-80
-activity#com.example.beatrizgomes.beaconlocation.ui.activity.EddystoneDetailsActivity
-ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:44:9-52:20
+activity#com.example.beatrizgomes.beaconlocation.ui.activity.DistanceRangeActivity
+ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:40:9-43:46
 	android:label
-		ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:46:13-69
+		ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:42:13-66
 	android:theme
-		ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:48:13-44
+		ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:43:13-44
+	android:name
+		ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:41:13-62
+service#com.kontakt.sdk.android.ble.service.ProximityService
+ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:45:9-47:40
+	android:exported
+		ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:47:13-37
+	android:name
+		ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:46:13-80
+activity#com.example.beatrizgomes.beaconlocation.ui.activity.EddystoneDetailsActivity
+ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:49:9-57:20
+	android:label
+		ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:51:13-69
+	android:theme
+		ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:53:13-44
 	android:parentActivityName
-		ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:47:13-74
+		ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:52:13-74
 	android:name
-		ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:45:13-65
+		ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:50:13-65
 meta-data#android.support.PARENT_ACTIVITY
-ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:49:13-51:107
+ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:54:13-56:107
 	android:name
-		ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:50:17-63
+		ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:55:17-63
 	android:value
-		ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:51:17-104
+		ADDED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml:56:17-104
 uses-sdk
 INJECTED from C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:22.2.1] C:\Users\a8pin\AndroidStudioProjects\LocationHE\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\AndroidManifest.xml:20:5-43

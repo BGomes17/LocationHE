@@ -202,14 +202,14 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
     protected void onPause() {
         super.onPause();
 
-        deviceManager.finishScan();
+        eddystoneScan.deviceManager.finishScan();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        deviceManager.disconnect();
-        deviceManager = null;
+        eddystoneScan.deviceManager.disconnect();
+        eddystoneScan.deviceManager = null;
         ButterKnife.unbind(this);
     }
 
