@@ -29,44 +29,106 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+/**
+ * The type Eddystone details activity.
+ */
 public class EddystoneDetailsActivity extends BaseActivity implements ProximityManager.ProximityListener {
 
 
     private static final int REQUEST_CODE_ENABLE_BLUETOOTH = 1;
+    /**
+     * The constant context.
+     */
     public static Context context;
+    /**
+     * The Name text view.
+     */
     @Bind(R.id.eddystone_name)
     public TextView nameTextView;
+    /**
+     * The Tx power text view.
+     */
     @Bind(R.id.txpower_level)
     public TextView txPowerTextView;
+    /**
+     * The Namespace text view.
+     */
     @Bind(R.id.namespace)
     public TextView namespaceTextView;
+    /**
+     * The Instace text view.
+     */
     @Bind(R.id.instance_id)
     public TextView instaceTextView;
+    /**
+     * The Rssi text view.
+     */
     @Bind(R.id.eddystone_rssi)
     public TextView rssiTextView;
+    /**
+     * The Proximity text view.
+     */
     @Bind(R.id.eddystone_proximity)
     public TextView proximityTextView;
+    /**
+     * The Distance text view.
+     */
     @Bind(R.id.eddystone_distance)
     public TextView distanceTextView;
+    /**
+     * The Battery text view.
+     */
     @Bind(R.id.battery_voltage)
     public TextView batteryTextView;
+    /**
+     * The Temperature text view.
+     */
     @Bind(R.id.eddystone_temperature)
     public TextView temperatureTextView;
+    /**
+     * The Url text view.
+     */
     @Bind(R.id.eddystone_url)
     public TextView urlTextView;
+    /**
+     * The Device manager.
+     */
     public ProximityManager deviceManager;
+    /**
+     * The Scan context.
+     */
     public ScanContext scanContext;
+    /**
+     * The Beacon identifier.
+     */
     public String beaconIdentifier;
+    /**
+     * The Distance.
+     */
     public double distance;
+    /**
+     * The Toolbar.
+     */
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+    /**
+     * The Eddystone scan.
+     */
     EddystoneDetailsScan eddystoneScan;
 
+    /**
+     * The Eddystone.
+     */
     IEddystoneDevice eddystone;
     private List<EventType> eventTypes = new ArrayList<EventType>() {{
         add(EventType.DEVICES_UPDATE);
     }};
 
+    /**
+     * Gets context.
+     *
+     * @return the context
+     */
     public static Context getContext() {
         return context;
     }
