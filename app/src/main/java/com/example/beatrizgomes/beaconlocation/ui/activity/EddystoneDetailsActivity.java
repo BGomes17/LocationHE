@@ -43,8 +43,8 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
     /**
      * The Name text view.
      */
-    @Bind(R.id.eddystone_name)
-    public TextView nameTextView;
+    //@Bind(R.id.eddystone_name)
+    //public TextView nameTextView;
     /**
      * The Tx power text view.
      */
@@ -68,8 +68,8 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
     /**
      * The Proximity text view.
      */
-    @Bind(R.id.eddystone_proximity)
-    public TextView proximityTextView;
+    //@Bind(R.id.eddystone_proximity)
+    //public TextView proximityTextView;
     /**
      * The Distance text view.
      */
@@ -83,8 +83,8 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
     /**
      * The Temperature text view.
      */
-    @Bind(R.id.eddystone_temperature)
-    public TextView temperatureTextView;
+    //@Bind(R.id.eddystone_temperature)
+    //public TextView temperatureTextView;
     /**
      * The Url text view.
      */
@@ -154,19 +154,19 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
             // Recebe da atividade anterior como parâmetro o dispositivo selecionado
             eddystone = (IEddystoneDevice) extras.get("EDDYSTONE");
             //beaconScan = new EddystoneDetailsScan(this, eddystone.getInstanceId());
-            nameTextView.setText(Html.fromHtml("<b>Nome:</b> &nbsp;&nbsp;" + eddystone.getNamespaceId()));
-            distanceTextView.setText(Html.fromHtml("<b>Distância:</b> &nbsp;&nbsp;"));
-            distanceTextView.append(String.format("%.2f cm", eddystone.getDistance()));
+            //nameTextView.setText(Html.fromHtml("<b>Nome:</b> &nbsp;&nbsp;" + eddystone.getNamespaceId()));
+            distanceTextView.setText(Html.fromHtml("<b>Distância:</b>&nbsp;&nbsp;a calibrar..."));
+
             namespaceTextView.setText(Html.fromHtml("<b>Namespace:</b> &nbsp;&nbsp;" + eddystone.getNamespaceId()));
             instaceTextView.setText(Html.fromHtml("<b>Instance:</b> &nbsp;&nbsp;" + eddystone.getInstanceId()));
             rssiTextView.setText(Html.fromHtml("<b>RSSI:</b> &nbsp;&nbsp;"));
             rssiTextView.append(String.format("%.2f dBm", eddystone.getRssi()));
             txPowerTextView.setText(Html.fromHtml("<b>Tx Power:</b> &nbsp;&nbsp;" + eddystone.getTxPower()));
             batteryTextView.setText(Html.fromHtml("<b>Bateria:</b> &nbsp;&nbsp;" + eddystone.getBatteryVoltage() + "V"));
-            temperatureTextView.setText(Html.fromHtml("<b>Temperatura:</b> &nbsp;&nbsp;" + eddystone.getTemperature() + "ºC"));
+            //temperatureTextView.setText(Html.fromHtml("<b>Temperatura:</b> &nbsp;&nbsp;" + eddystone.getTemperature() + "ºC"));
             urlTextView.setText(Html.fromHtml("<b>Url:</b> &nbsp;&nbsp;" + eddystone.getUrl()));
 
-            switch (eddystone.getProximity().toString()) {
+           /* switch (eddystone.getProximity().toString()) {
                 case "FAR":
                     proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;Longe"));
                     break;
@@ -176,7 +176,7 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
                 case "IMMEDIATE":
                     proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;Muito Perto"));
                     break;
-            }
+            }*/
 
             beaconIdentifier = eddystone.getInstanceId();
             eddystoneScan = new EddystoneDetailsScan(context, beaconIdentifier);

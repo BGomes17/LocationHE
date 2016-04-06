@@ -41,13 +41,28 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 
+/**
+ * The type Beacons scan activity.
+ */
 public class BeaconsScanActivity extends BaseActivity implements ProximityManager.ProximityListener{
 
+    /**
+     * The Eddystone name.
+     */
     public HashMap eddystoneName;
     private static final int REQUEST_CODE_ENABLE_BLUETOOTH = 1;
+    /**
+     * The Scan context.
+     */
     public ScanContext scanContext;
+    /**
+     * The Toolbar.
+     */
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+    /**
+     * The List beacons.
+     */
     @Bind(R.id.list_beacons)
     ExpandableListView listBeacons;
     private BeaconsScanMonitorAdapter beaconsAdapter;
@@ -158,6 +173,9 @@ public class BeaconsScanActivity extends BaseActivity implements ProximityManage
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Start scan.
+     */
     public void startScan() {
 
         deviceManager.initializeScan(getOrCreateScanContext(), new OnServiceReadyListener() {
@@ -174,6 +192,11 @@ public class BeaconsScanActivity extends BaseActivity implements ProximityManage
 
     }
 
+    /**
+     * Gets or create scan context.
+     *
+     * @return the or create scan context
+     */
     public ScanContext getOrCreateScanContext() {
         if (scanContext == null) {
             scanContext = new ScanContext.Builder()
@@ -235,6 +258,11 @@ public class BeaconsScanActivity extends BaseActivity implements ProximityManage
         }
     }
 
+    /**
+     * On devices update event.
+     *
+     * @param event the event
+     */
     public void onDevicesUpdateEvent(BluetoothDeviceEvent event) {
         DeviceProfile deviceProfile = event.getDeviceProfile();
         switch (deviceProfile) {

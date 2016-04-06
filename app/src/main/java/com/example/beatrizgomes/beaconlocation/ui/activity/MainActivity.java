@@ -21,9 +21,6 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.button_scan)
     Button btn_scan;
 
-    @Bind(R.id.button)
-    Button btn_test;
-
     @Bind(R.id.toolbar)
     Toolbar toolbar;
 
@@ -67,13 +64,6 @@ public class MainActivity extends BaseActivity {
         finish();
     }
 
-    @OnClick(R.id.button)
-    void teste() {
-       // Intent intentScanActivity = new Intent(MainActivity.this, TestActivity.class);
-        //intentScanActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        //startActivity(intentScanActivity);
-        //finish();
-    }
 /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

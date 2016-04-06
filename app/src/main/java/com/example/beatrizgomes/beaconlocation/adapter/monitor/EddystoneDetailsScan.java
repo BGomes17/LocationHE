@@ -2,6 +2,7 @@ package com.example.beatrizgomes.beaconlocation.adapter.monitor;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.CountDownTimer;
 import android.text.Html;
 import android.util.Log;
 import android.widget.ImageView;
@@ -66,6 +67,19 @@ public class EddystoneDetailsScan {
     private List<EventType> eventTypes = new ArrayList<EventType>() {{
         add(EventType.DEVICES_UPDATE);
     }};
+
+    CountDownTimer timerCount = new CountDownTimer(3000, 1000) {
+
+        public void onTick(long millisUntilFinished) {
+
+        }
+
+        public void onFinish() {
+            TextView rssiTextView = (TextView) ((Activity) context).findViewById(R.id.eddystone_rssi);
+            rssiTextView.setText(Html.fromHtml("<b>RSSI:</b> &nbsp;&nbsp;sem sinal."));
+
+        }
+    };
 
     /**
      * Instantiates a new Eddystone details scan.
@@ -166,13 +180,17 @@ public class EddystoneDetailsScan {
 
             if (context == EddystoneDetailsActivity.getContext()) {
 
+                timerCount.cancel();
+                timerCount.start();
+
+
                 calculateDistance(eddystoneDevice.getTxPower(), eddystoneDevice.getRssi());
 
                 TextView rssiTextView = (TextView) ((Activity) context).findViewById(R.id.eddystone_rssi);
                 rssiTextView.setText(Html.fromHtml("<b>RSSI:</b> &nbsp;&nbsp;"));
                 rssiTextView.append(String.format("%.2f dBm", eddystoneDevice.getRssi()));
 
-                TextView proximityTextView = (TextView) ((Activity) context).findViewById(R.id.eddystone_proximity);
+                // TextView proximityTextView = (TextView) ((Activity) context).findViewById(R.id.eddystone_proximity);
 
 
                 /*
@@ -228,6 +246,7 @@ public class EddystoneDetailsScan {
      */
     public void calculateDistance(int txPower, double receivedRssi) {
 
+
         Log.i("EddystoneDetailsScan", "calculateDistance(): receivedRssi: " + receivedRssi);
 
         TextView distanceTextView = (TextView) ((Activity) context).findViewById(R.id.eddystone_distance);
@@ -235,22 +254,23 @@ public class EddystoneDetailsScan {
         double rssi = rssiSuavization(receivedRssi);
         Log.i("EddystoneDetailsScan", "calculateDistance(): rssi suavizado: " + rssi);
 
-        if (rssi == 0) {
-            distanceTextView.setText(Html.fromHtml("<b>Distância:</b> &nbsp;&nbsp;"));
-            distanceTextView.append(String.format("a calibrar . . ."));
+        if (rssi == 0.0) {
+            distanceTextView.setText(Html.fromHtml("<b>Distância:</b>&nbsp;&nbsp;a calibrar..."));
+
             //return -1.0; // if we cannot determine distance, return -1.
-        }
-
-        double ratio = rssi * 1.0 / txPower;
-        if (ratio < 1.0) {
-            //return Math.pow(ratio,10);
-            distanceTextView.setText(Html.fromHtml("<b>Distância:</b> &nbsp;&nbsp;"));
-            distanceTextView.append(String.format("%.2f cm", Math.pow(ratio, 10)));
-
         } else {
-            double accuracy = (0.89976) * Math.pow(ratio, 7.7095) + 0.111;
-            distanceTextView.setText(Html.fromHtml("<b>Distância:</b> &nbsp;&nbsp;"));
-            distanceTextView.append(String.format("%.2f cm", accuracy));
+
+            double ratio = rssi * 1.0 / txPower;
+            if (ratio < 1.0) {
+                //return Math.pow(ratio,10);
+                distanceTextView.setText(Html.fromHtml("<b>Distância:</b> &nbsp;&nbsp;"));
+                distanceTextView.append(String.format("%.2f cm", Math.pow(ratio, 10)));
+
+            } else {
+                double accuracy = (0.89976) * Math.pow(ratio, 7.7095) + 0.111;
+                distanceTextView.setText(Html.fromHtml("<b>Distância:</b> &nbsp;&nbsp;"));
+                distanceTextView.append(String.format("%.2f cm", accuracy));
+            }
         }
     }
 
@@ -307,7 +327,7 @@ public class EddystoneDetailsScan {
          * MODA e Média.
           */
         if (count == 5) {
-            Log.i("EddystoneDetailsScan", "rssiSuavization(): Count =  5 ");
+            //Log.i("EddystoneDetailsScan", "rssiSuavization(): Count =  5 ");
             for (int i = 0; i < 9; i++) {
                 rssiMode.remove(0);
                 if (rssiArray.size() >= 12  )
@@ -315,7 +335,7 @@ public class EddystoneDetailsScan {
             }
         }
 
-        Log.i("EddystoneDetailsScan", "rssiSuavization(): mode: " + modeValue);
+        //Log.i("EddystoneDetailsScan", "rssiSuavization(): mode: " + modeValue);
 
         // Retorna a média dos Rssi's, valor que irá ser usado para o calculo da distancia.
         return averageRssi();
