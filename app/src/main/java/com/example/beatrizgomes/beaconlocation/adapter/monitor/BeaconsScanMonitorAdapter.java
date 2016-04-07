@@ -12,7 +12,6 @@ import com.example.beatrizgomes.beaconlocation.adapter.viewholder.GroupViewHolde
 import com.example.beatrizgomes.beaconlocation.adapter.viewholder.IBeaconListViewHolder;
 import com.example.beatrizgomes.beaconlocation.model.BeaconWrapper;
 import com.kontakt.sdk.android.ble.device.DeviceProfile;
-import com.kontakt.sdk.android.ble.device.EddystoneDevice;
 import com.kontakt.sdk.android.common.profile.IBeaconDevice;
 import com.kontakt.sdk.android.common.profile.IEddystoneDevice;
 
@@ -191,7 +190,7 @@ public class BeaconsScanMonitorAdapter extends BaseExpandableListAdapter {
                 convertView.setTag(childViewHolder);
             }
             IEddystoneDevice eddystoneDevice = child.getEddystoneDevice();
-            EddystoneDevice.EddystoneCharacteristics eddystoneCharacteristics;
+            //EddystoneDevice.EddystoneCharacteristics eddystoneCharacteristics;
             EddystoneItemViewHolder viewHolder = (EddystoneItemViewHolder) convertView.getTag();
 
             Context context = convertView.getContext();

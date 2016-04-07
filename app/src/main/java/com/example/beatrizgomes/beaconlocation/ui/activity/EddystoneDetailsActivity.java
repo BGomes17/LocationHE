@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.example.beatrizgomes.beaconlocation.R;
 import com.example.beatrizgomes.beaconlocation.adapter.monitor.EddystoneDetailsScan;
-import com.kontakt.sdk.android.ble.configuration.scan.ScanContext;
 import com.kontakt.sdk.android.ble.discovery.BluetoothDeviceEvent;
 import com.kontakt.sdk.android.ble.discovery.EventType;
 import com.kontakt.sdk.android.ble.manager.ProximityManager;
@@ -95,10 +94,6 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
      */
     public ProximityManager deviceManager;
     /**
-     * The Scan context.
-     */
-    public ScanContext scanContext;
-    /**
      * The Beacon identifier.
      */
     public String beaconIdentifier;
@@ -155,7 +150,7 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
             eddystone = (IEddystoneDevice) extras.get("EDDYSTONE");
             //beaconScan = new EddystoneDetailsScan(this, eddystone.getInstanceId());
             //nameTextView.setText(Html.fromHtml("<b>Nome:</b> &nbsp;&nbsp;" + eddystone.getNamespaceId()));
-            distanceTextView.setText(Html.fromHtml("<b>Distância:</b>&nbsp;&nbsp;a calibrar..."));
+            distanceTextView.setText(Html.fromHtml("<b>Distância:</b>&nbsp;&nbsp;<i>a calibrar...</i>"));
 
             namespaceTextView.setText(Html.fromHtml("<b>Namespace:</b> &nbsp;&nbsp;" + eddystone.getNamespaceId()));
             instaceTextView.setText(Html.fromHtml("<b>Instance:</b> &nbsp;&nbsp;" + eddystone.getInstanceId()));
@@ -165,18 +160,6 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
             batteryTextView.setText(Html.fromHtml("<b>Bateria:</b> &nbsp;&nbsp;" + eddystone.getBatteryVoltage() + "V"));
             //temperatureTextView.setText(Html.fromHtml("<b>Temperatura:</b> &nbsp;&nbsp;" + eddystone.getTemperature() + "ºC"));
             urlTextView.setText(Html.fromHtml("<b>Url:</b> &nbsp;&nbsp;" + eddystone.getUrl()));
-
-           /* switch (eddystone.getProximity().toString()) {
-                case "FAR":
-                    proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;Longe"));
-                    break;
-                case "NEAR":
-                    proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;Perto"));
-                    break;
-                case "IMMEDIATE":
-                    proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;Muito Perto"));
-                    break;
-            }*/
 
             beaconIdentifier = eddystone.getInstanceId();
             eddystoneScan = new EddystoneDetailsScan(context, beaconIdentifier);
@@ -202,10 +185,6 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
 
     }
 
-    /*    public static Context getContext() {
-            return context;
-        }
-    */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -286,8 +265,6 @@ public class EddystoneDetailsActivity extends BaseActivity implements ProximityM
 
         return super.onKeyDown(keyCode, event);
     }
-
-
 
 
 

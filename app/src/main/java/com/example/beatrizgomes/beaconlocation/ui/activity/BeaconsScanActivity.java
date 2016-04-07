@@ -10,7 +10,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
-import android.widget.Toast;
 
 import com.example.beatrizgomes.beaconlocation.R;
 import com.example.beatrizgomes.beaconlocation.adapter.monitor.BeaconsScanMonitorAdapter;
@@ -46,11 +45,11 @@ import butterknife.ButterKnife;
  */
 public class BeaconsScanActivity extends BaseActivity implements ProximityManager.ProximityListener{
 
+    private static final int REQUEST_CODE_ENABLE_BLUETOOTH = 1;
     /**
      * The Eddystone name.
      */
     public HashMap eddystoneName;
-    private static final int REQUEST_CODE_ENABLE_BLUETOOTH = 1;
     /**
      * The Scan context.
      */
@@ -109,7 +108,7 @@ public class BeaconsScanActivity extends BaseActivity implements ProximityManage
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
 
                 BeaconWrapper child = beaconsAdapter.getChild(groupPosition, childPosition);
-                if (DeviceProfile.IBEACON == child.getDeviceProfile()) {
+                if (com.kontakt.sdk.android.ble.device.DeviceProfile.IBEACON == child.getDeviceProfile()) {
                     final IBeaconDevice ibeacon = child.getBeaconDevice();
 
 
@@ -122,7 +121,7 @@ public class BeaconsScanActivity extends BaseActivity implements ProximityManage
                     startActivity(intentDetailsActivity);
                     finish();
 
-                } else if (DeviceProfile.EDDYSTONE == child.getDeviceProfile()) {
+                } else if (com.kontakt.sdk.android.ble.device.DeviceProfile.EDDYSTONE == child.getDeviceProfile()) {
                     IEddystoneDevice eddystone = child.getEddystoneDevice();
 
                     Intent intentDetailsActivity = new Intent(BeaconsScanActivity.this, EddystoneDetailsActivity.class);
@@ -157,10 +156,6 @@ public class BeaconsScanActivity extends BaseActivity implements ProximityManage
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        /*if (id == R.id.action_settings) {
-            return true;
-        }*/
         switch (item.getItemId()) {
             case android.R.id.home:
                 Intent intentScanActivity = new Intent(BeaconsScanActivity.this, MainActivity.class);
@@ -264,6 +259,7 @@ public class BeaconsScanActivity extends BaseActivity implements ProximityManage
      * @param event the event
      */
     public void onDevicesUpdateEvent(BluetoothDeviceEvent event) {
+
         DeviceProfile deviceProfile = event.getDeviceProfile();
         switch (deviceProfile) {
             case IBEACON:

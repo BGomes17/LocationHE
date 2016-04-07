@@ -37,8 +37,6 @@ public class IBeaconDetailsActivity extends BaseActivity implements ProximityMan
     public TextView minorTextView;
     @Bind(R.id.rssi)
     public TextView rssiTextView;
-    @Bind(R.id.proximity)
-    public TextView proximityTextView;
     @Bind(R.id.distance)
     public TextView distanceTextView;
     @Bind(R.id.battery)
@@ -71,25 +69,13 @@ public class IBeaconDetailsActivity extends BaseActivity implements ProximityMan
             // Recebe da atividade anterior como parâmetro o dispositivo selecionado
             ibeacon = (IBeaconDevice) extras.get("IBEACON");
             nameTextView.setText(Html.fromHtml("<b>Nome:</b> &nbsp;&nbsp;" + ibeacon.getUniqueId()));
-            distanceTextView.setText(Html.fromHtml("<b>Distância:</b> &nbsp;&nbsp;"));
-            distanceTextView.append(String.format("%.2f m", ibeacon.getDistance()));
+            distanceTextView.setText(Html.fromHtml("<b>Distância:</b> &nbsp;&nbsp; <i>a calibrar . . .</i>"));
             majorTextView.setText(Html.fromHtml("<b>Major:</b> &nbsp;&nbsp;" + ibeacon.getMajor()));
             minorTextView.setText(Html.fromHtml("<b>Minor:</b> &nbsp;&nbsp;" + ibeacon.getMinor()));
             rssiTextView.setText(Html.fromHtml("<b>RSSI:</b> &nbsp;&nbsp;" + ibeacon.getRssi() + " dBm"));
             txPowerTextView.setText(Html.fromHtml("<b>Tx Power:</b> &nbsp;&nbsp;" + ibeacon.getTxPower()));
             batteryTextView.setText(Html.fromHtml("<b>Bateria:</b> &nbsp;&nbsp;" + ibeacon.getBatteryPower() + "%"));
             beaconScan = new IBeaconsDetailsScan(this, ibeacon.getName());
-            switch (ibeacon.getProximity().toString()) {
-                case "FAR":
-                    proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;Longe"));
-                    break;
-                case "NEAR":
-                    proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;Perto"));
-                    break;
-                case "IMMEDIATE":
-                    proximityTextView.setText(Html.fromHtml("<b>Proximidade:</b> &nbsp;&nbsp;Muito Perto"));
-                    break;
-            }
             beaconScan.startScan(this);
 
             FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_eddystone);
